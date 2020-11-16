@@ -1,6 +1,18 @@
    <?php 
+
+   // Initialize the session
    session_start();
-   if(isset($_SESSION['errflag']))
+
+	// Check if the user is already logged in, if yes then redirect to welcome page
+	if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+		header("location: welcome.php");
+		exit;
+	}
+	// Include config file
+	require_once "config.php";
+	
+	// Define variables and initialize with empty values
+	if(isset($_SESSION['errflag']))
 	{
 		foreach($_SESSION as $key => $value)	//store SESSION values in to local variables
 		{
@@ -10,105 +22,161 @@
 	}
 	else
 	{
-		
-		
-
 		// default error message
-		$fnerr = "";
-		$lnerr = "";
-		$pwerr = "";
-		$emlerr = "";
-		$mstaterr = "";
-		$bioerr = "";
-		$doberr = "";
-		$imgerr = "";
-		$err = " ";
+		$username_err = "";
+		$password_err  = "";
 		session_destroy();
 	}
-   
+	
+	// Processing form data when form is submitted
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+		// Check if username is empty
+		if(empty(trim($_POST["username"]))){
+			$username_err = "Please Enter Email / StaffID.";
+		} else{
+			$username = trim($_POST["username"]);
+		}
+		
+		// Check if password is empty
+		if(empty(trim($_POST["password"]))){
+			$password_err = "Please Enter your Password.";
+		} else{
+			$password = trim($_POST["password"]);
+		}
+		
+		// Validate credentials
+		if(empty($username_err) && empty($password_err)){
+			// Prepare a select statement
+			$sql = "SELECT * FROM Login WHERE Email = ? OR StaffID = ?";
+			
+			if($stmt = mysqli_prepare($conn, $sql)){
+				// Bind variables to the prepared statement as parameters
+				mysqli_stmt_bind_param($stmt, "s", $param_username,$param_username);
+				
+				// Set parameters
+				$param_username = $username;
+				
+				// Attempt to execute the prepared statement
+				if(mysqli_stmt_execute($stmt)){
+					// Store result
+					mysqli_stmt_store_result($stmt);
+					
+					// Check if username exists, if yes then verify password
+					if(mysqli_stmt_num_rows($stmt) == 1){                    
+						// Bind result variables
+						mysqli_stmt_bind_result($stmt, $id, $Email, $Password, $Role, $StaffID);
+						if(mysqli_stmt_fetch($stmt)){
+							if(password_verify($password, $Password)){
+								// Password is correct, so start a new session
+								session_start();
+								
+								// Store data in session variables
+								$_SESSION["loggedin"] = true;
+								$_SESSION["id"] = $id;
+								$_SESSION["email"] = $Email;     
+								$_SESSION["role"] = $Role;     
+								$_SESSION["staffId"] = $StaffID;                    
+								
+								// Redirect user to welcome page
+								header("location: welcome.php");
+							} else{
+								// Display an error message if password is not valid
+								$password_err = "Password is NOT valid.";
+							}
+						}
+					} else{
+						// Display an error message if username doesn't exist
+						$username_err = "Username is NOT valid.";
+					}
+				} else{
+					echo "Oops! Something went wrong. Please try again later.";
+				}
+
+				// Close statement
+				mysqli_stmt_close($stmt);
+			}
+		}
+		// Close connection
+		mysqli_close($conn);
+	}
+
    ?>
   
    
    <!DOCTYPE html>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-			<!-- Add icon library -->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-			<style>
-					* {box-sizing: border-box;}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- Add icon library -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<style>
+			* {box-sizing: border-box;}
+			body { 
+				margin: 0;
+				font-family: Arial, Helvetica, sans-serif;
+			}
 
-					body { 
-					  margin: 0;
-					  font-family: Arial, Helvetica, sans-serif;
-					}
+			.header {
+				overflow: hidden;
+				background-color: #f1f1f1;
+				padding: 0px 10px;
+			}
 
-					.header {
-					  overflow: hidden;
-					  background-color: #f1f1f1;
-					  padding: 0px 10px;
-					}
+			.header a {
+			  	float: left;
+				color: black;
+				text-align: center;
+				padding: 12px;
+				text-decoration: none;
+				font-size: 12px; 
+				line-height: 12px;
+				border-radius: 4px;
+			}
 
-					.header a {
-					  float: left;
-					  color: black;
-					  text-align: center;
-					  padding: 12px;
-					  text-decoration: none;
-					  font-size: 12px; 
-					  line-height: 12px;
-					  border-radius: 4px;
-					}
+			.header a.logo {
+				font-size: 20px;
+				font-weight: bold;
+			}
 
-					.header a.logo {
-					  font-size: 20px;
-					  font-weight: bold;
-					}
+			.header a:hover {
+				background-color: #ddd;
+				color: black;
+			}
 
-					.header a:hover {
-					  background-color: #ddd;
-					  color: black;
-					}
+			.header a.active {
+				background-color: dodgerblue;
+				color: white;
+			}
 
-					.header a.active {
-					  background-color: dodgerblue;
-					  color: white;
-					}
+			.header-right {
+				float: right;
+			}
 
-					.header-right {
-					  float: right;
-					}
-
-					@media screen and (max-width: 500px) {
-					  .header a {
-						float: none;
-						display: block;
-						text-align: left;
-					  }
+			@media screen and (max-width: 500px) {
+				.header a {
+					float: none;
+					display: block;
+					text-align: left;
+				}
 					  
-					  .header-right {
-						float: none;
-					  }
-					  
-					}
-					   </style>
-						<style>
-					   .bg-img {
-					  /* The image used */
-					  background-image: url("nursing.png");
-
-					  min-height: 580px;
-
-					  /* Center and scale the image nicely */
-					  background-position: ;
-					  background-repeat: no-repeat;
-					  background-size: cover;
-					  position: relative;
-					}
-             </style>
-          <html>
-       <head>
-	   
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-      <style>
+				.header-right {
+					float: none;
+				}	  
+			}
+			.bg-img {
+			/* The image used */
+				background-image: url("nursing.png");
+				min-height: 580px;
+				/* Center and scale the image nicely */
+				background-repeat: no-repeat;
+				background-size: cover;
+				position: relative;
+			}
+		</style>
+		
+        <html>
+       		<head>
+          		<meta name="viewport" content="width=device-width, initial-scale=1">
+      			<style>
 						body {font-family: Arial, Helvetica, sans-serif;}
 						form {border: 3px solid black;  width: 30%; background-color: white;}
 
@@ -170,65 +238,55 @@
 							 width: 50%;
 						  }
 						}
-                         </style>
-                   <header>
-			    <nav>
+           		</style>
+            	<header>
+			    	<nav>
 							<div class="header"></br>
 								  <img src="logo.png" style="width:10%">
-								  </div>
+							</div>
 
-								  <div class="header">
+							<div class="header">
 
-								  </div>
-								  <div class="header">
-
-		  
-								 <div class="header-right">
-								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
-								
-								 
-                                </div>
-				 </nav>
+							</div>
+							<div class="header">
+								<div class="header-right">
+									<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+								</div>
+							</div>
+					 </nav>
+            	</header>
 	         
-          </head>
-              
-     <body>
-                       <div class="bg-img">
-                       
-			<main>	<br/>	   
-                    <div id="page-wrapper">
- 
-	                 <section id="region-main" class="col-12">
-
-							   <div align = "center">
-							   
-								 <form method="POST" action="includes/login.inc.php"> 
-										 <div class="imgcontainer">
-										 <img src="admin.png" alt ="logo" style="width:100px">  
-										  </div>
-
-										   
-											<label for="uname"><b>Username</b></label>
-											<input type="text" placeholder="Enter Username" title="No Space OR Numbers is allowed" name="mailuid" pattern="[a-zA-Z0-9]+" required></br>
-
-											<label for="psw"><b>Password</b></label>
-											<input type="password" placeholder="Enter Password" name="pwd" required></br>
-											 <?php echo $err; ?>
+         	</head>              
+     		<body>
+            	<div class="bg-img">     
+					<main>	<br/>	   
+                    	<div id="page-wrapper">
+	                 		<section id="region-main" class="col-12">
+								<div align = "center">
+									<form method="POST" action=" "> 
+										<div class="imgcontainer">
+											<img src="admin.png" alt ="logo" style="width:100px">  
+										</div>
+										<label for="uname"><b>Email / StaffID</b></label>
+										<input type="text" placeholder="Enter Username" title="No Space OR Numbers is allowed" 
+											name="username" pattern="[a-zA-Z0-9]+" value="<?php echo $username; ?>" required  ></br>
+											<?php echo $username_err; ?>
+										
+										<label for="psw"><b>Password</b></label>
+										<input type="password" placeholder="Enter Password" name="password" required></br>
+										<?php echo $password_err; ?>
 							
-											<button type="submit" class="loginbtn">Login </button>
-											<label>
+										<button type="submit" class="loginbtn">Login </button>
+										<label>
 											<input type="checkbox" checked="checked" name="remember"> Remember me</br>
-											 <span class="psw">Forgot <a href="#">password?</a></span>		 
-											</label></br></br></br>
-                         
-						                       </div>
-                                       </form>
-						       </section> 
-			               </div>
-					    </div>
-           </main>
-
-       </body>
-	 </header>    
-</html>
+											<span class="psw">Forgot <a href="#">password?</a></span>		 
+										</label></br></br></br>
+									</form>
+								</div>
+						    </section> 
+			            </div>
+           			</main>
+            	</div>
+       		</body>  
+		</html>
 
