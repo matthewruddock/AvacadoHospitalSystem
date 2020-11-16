@@ -8,9 +8,9 @@
   // Destroy the session.
   session_destroy();
 
-  // Redirect to login page
-  header("location: login.php");
-  exit;
+   //Redirect to login page
+  //header("location: login.php");
+  //exit;
 ?>
 <style>
   * {box-sizing: border-box;}
@@ -73,7 +73,7 @@
 
 <body>
   <div class="header">
-    <img src="jlogo.jpg" alt ="logo" style="width:50px"> 
+    <img src="imgs/jlogo.jpg" alt ="logo" style="width:50px"> 
     <div class="header-right">
       <a class="active" href="login.php">LOG BACK IN</a> 
     </div>
@@ -82,11 +82,11 @@
   <center > <p> You Are Logged out! </p>  </center >
   <?php
     date_default_timezone_set("America/New_York");
-    echo date("h:i:sa"). "<br>". "<br>";
+    echo date("h:i:sa");
+    echo " - ";
     echo date("Y-m-d") . "<br>";
   ?>
 </body>
 <footer>
-  <p>Posted by: JA</p>
-  <p>Contact information: <a href="mailto:AVACADO_HOSPITAL@HOTMAIL.com">AVACADO_HOSPITAL@HOTMAIL.com</a>.</p>
+  <p>Contact information: <a href="mailto:AVACADO_HOSPITAL@HOTMAIL.com">avacado_hospital@hotmail.com</a>.</p>
 </footer>
