@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Check input errors before inserting in database
-    if(empty($email_err) && empty($pwd_err) && empty($pwd_err)){
+    if(empty($email_err) && empty($pwd_err) && empty($pwd_repeat)){
         
         // Prepare an insert statement
         $sql = "INSERT INTO users (Email, StaffID, Password, Role) VALUES (?, ?, ?, ?)";

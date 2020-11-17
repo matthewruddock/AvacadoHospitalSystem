@@ -69,9 +69,11 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 	  <div class="dropdown">
 	 <a> <button class="dropbtn"><img src="login.jfif" style="width:25%"></button></a>
 	  <div class="dropdown-content">
-		<a href="doctorlogin.php">Doctor Login</a>
-		<a href="nurselogin.php">Nurse Login</a>
-		<a href="login.php">Admin Login</a>
+      <a href="loginGuest.php">Guest Login</a>
+      <a href="loginStaff.php">Staff Login</a>
+      <a href="loginAdmin.php">Admin Login</a>
+      <a href="signupGuest.php">Guest Sign Up</a>
+      <a href="signupStaff.php">Staff Sign Up</a>
 	  </div>
 	</div>
       <a href="#contact" class="w3-button w3-block">Contact</a>
