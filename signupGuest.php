@@ -80,7 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: login.php");
+                header("location: loginGuest.php");
             } else{
                 echo "2. Something went wrong. Please try again later.";
             }
@@ -312,7 +312,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 	<div class="bg-img">
 								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
 											<div class="container">
-												<h1>Sign Up</></h1>
+												<h1>Guest Sign Up</></h1>
 												<p><font color="yellow">Please fill in this form to create an account.</font></p>
 												
 												<div <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
@@ -342,7 +342,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 													<button type="submit" class="signupbtn">Sign Up</button>
 												</div>
-												<p>Already have an account? <a href="login.php">Login here</a>.</p>
+												<p>Already have an account? <a href="loginGuest.php">Login here</a>.</p>
 										    </div>          
 								  		</form>
 									</div>

@@ -1,6 +1,6 @@
 <?php
 // Include config file
-var_dump($_POST);
+
 require_once "config.php";
  
 // Define variables and initialize with empty values
@@ -30,12 +30,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $email_err = "This email is already taken.";
+                    $email_err = "<p style='color:red; font-weight:bold'>This email is already taken.";
                 } else{
                     $email = trim($_POST["email"]);
                 }
             } else{
-                echo "1. Oops! Something went wrong. Please try again later.";
+                echo "<p style='color:red; font-weight:bold'>1. Oops! Something went wrong. Please try again later.";
             }
 
             // Close statement
@@ -67,23 +67,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["pwd"]))){
         $pwd_err = "Please enter a password.";     
     } elseif(strlen(trim($_POST["pwd"])) < 6){
-        $pwd_err = "Password must have atleast 6 characters.";
+        $pwd_err = "<p style='color:red; font-weight:bold'>Password must have atleast 6 characters.";
     } else{
         $pwd = trim($_POST["pwd"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["pwd_err"]))){
-        $pwd_err_err = "Please confirm password.";     
+        $pwd_err_err = "<p style='color:red; font-weight:bold'>Please confirm password.";     
     } else{
         $pwd_err = trim($_POST["pwd_err"]);
         if(empty($pwd_err) && ($pwd != $pwd_err)){
-            $pwd_err_err = "Password did not match.";
+            $pwd_err_err = "<p style='color:red; font-weight:bold'>Password did not match.";
         }
     }
-    
+    var_dump($_POST);
     // Check input errors before inserting in database
-    if(empty($email_err) && empty($pwd_err) && empty($pwd_repeat) && empty($role_err) && empty($staffId_repeat)   ){
+    if(empty($email_err) && empty($pwd_err) && empty($pwd_repeat)){
         
         // Prepare an insert statement
         $sql = "INSERT INTO users (Email, StaffID, Password, Role) VALUES (?, ?, ?, ?)";
@@ -93,17 +93,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_bind_param($stmt, "ssss", $param_email, $param_staffId, $param_pwd, $param_role);
             
 			// Set parameters
-			$param_staffId = $staffId;
-			$param_role = $role;
+			$param_staffId = "doc100";
+			$param_role = "Doctor";
             $param_email = $email;
             $param_pwd = password_hash($pwd, PASSWORD_DEFAULT); // Creates a password hash
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                header("location: login.php");
+                //header("location: loginStaff.php");
             } else{
-                echo "2. Something went wrong. Please try again later.";
+                echo "<p style='color:red; font-weight:bold'>2. Something went wrong. Please try again later.";
             }
 
             // Close statement
@@ -333,7 +333,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 	<div class="bg-img">
 								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
 											<div class="container">
-												<h1>Sign Up</></h1>
+												<h1>Staff Sign Up</></h1>
 												<p><font color="yellow">Please fill in this form to create an account.</font></p>
 												
 												<div <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
@@ -348,11 +348,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                 </div>
 
                                                 <div <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
-                                                <label for="cars">Choose a Role:</label>
+                                                <label for="role">Choose a Role:</label>
                                                     <select name="role" id="role">
                                                         <option <?php if($role=='') echo 'selected'; ?>  value="">SELECT A ROLE</option>
-                                                        <option <?php if($gender=='Doctor') echo 'selected'; ?> value="Doctor">Doctor</option>
-                                                        <option <?php if($gender=='Nurse') echo 'selected'; ?> value="Nurse">Nurse</option>
+                                                        <option <?php if($role=='Doctor') echo 'selected'; ?> value="Doctor">Doctor</option>
+                                                        <option <?php if($role=='Nurse') echo 'selected'; ?> value="Nurse">Nurse</option>
                                                     </select>
                                                 </div>
 
@@ -377,7 +377,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 													<button type="submit" class="signupbtn">Sign Up</button>
 												</div>
-												<p>Already have an account? <a href="login.php">Login here</a>.</p>
+												<p>Already have an account? <a href="loginStaff">Login here</a>.</p>
 										    </div>          
 								  		</form>
 									</div>
