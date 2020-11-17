@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php sesson_start();?>
 <html>
 <title>Avacodo Hospital System</title>
 <meta charset="UTF-8">
@@ -53,7 +54,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 <!-- Links (sit on top) -->
 <div class="w3-top">
-    
+
   <div class="w3-row w3-large w3-light-grey">
     <div class="w3-col s3">
       <a href="#" class="w3-button w3-block">Home</a>
@@ -65,7 +66,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
       <a href="#about" class="w3-button w3-block">About</a>
     </div>
     <div class="w3-col s3">
-	 
+
 	  <div class="dropdown">
 	 <a> <button class="dropbtn"><img src="login.jfif" style="width:25%"></button></a>
 	  <div class="dropdown-content">
@@ -75,9 +76,9 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 	  </div>
 	</div>
       <a href="#contact" class="w3-button w3-block">Contact</a>
-	  
+
     </div>
-	
+
   </div>
 </div>
 
@@ -114,7 +115,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     <div class="w3-container w3-dark-grey w3-padding w3-xlarge">
       <div class="w3-left" onclick="plusDivs(-1)"><i class="fa fa-arrow-circle-left w3-hover-text-teal"></i></div>
       <div class="w3-right" onclick="plusDivs(1)"><i class="fa fa-arrow-circle-right w3-hover-text-teal"></i></div>
-    
+
       <div class="w3-center">
         <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
         <span class="w3-tag demodots w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
@@ -122,7 +123,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
       </div>
     </div>
   </div>
-  
+
   <!-- Grid -->
   <div class="w3-row w3-container">
     <div class="w3-center w3-padding-64">
@@ -132,10 +133,10 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
       <h3>Body Mass Index </h3>
 	  <p> Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women . </P>
       <p> <a href="BMI.php"> Calculate Body Mass Index Here</a></p>
-	
+
     </div>
-	
-	
+
+
 
     <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16">
       <h3>X-Rays</h3>
@@ -182,8 +183,8 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
       <ul class="w3-ul w3-border w3-center w3-hover-shadow">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">Doctor Consultation</li>
         <li class="w3-padding-16"><b>What To Expect</b></br></br> When you come to us, you will complete a patient medical history form that will help the surgeons understand your medical history and current concerns. It is possible that they will require some diagnostic studies, such as an ultra sound to help diagnose the extent of your venous disease. Once your doctor understands your medical needs, they will discuss and develop a plan of care specific to you. You will meet with our support staff that will assist you with insurance questions, financing and scheduling of your treatment.</li>
-      
-       
+
+
         <li class="w3-light-grey w3-padding-24">
           <button class="w3-button w3-green w3-padding-large"><a href="appointment.php"> Click Here </a></button>
         </li>
@@ -196,8 +197,8 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
         <li class="w3-padding-16"><b>X-ray radiography</b>Detects bone fractures, certain tumors and other abnormal masses, pneumonia, some types of injuries, calcifications, foreign objects, dental problems. </li>
         <li class="w3-padding-16"><b>Mammography</b> A radiograph of the breast that is used for cancer detection and diagnosis.</li>
         <li class="w3-padding-16"><b>Fluoroscopy</b>Uses x-rays and and a fluorescent screen to obtain real-time images of movement within the body or to view diagnostic processes, such as following the path of an injected or swallowed contrast agent </li>
-        
-       
+
+
         <li class="w3-light-grey w3-padding-24">
           <button class="w3-button w3-green w3-padding-large"><a href="appointment.php"> Click Here </a></button>
         </li>
@@ -205,7 +206,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     </div>
 	<br/> <br/><br/> <br/>
   </div>
- 
+
   <!-- Grid -->
   <div class="w3-row-padding" id="about">
     <div class="w3-center w3-padding-64">
@@ -231,7 +232,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
               <p><bold>  Vision:</bold>
                To be the premier integrated healthcare delivery system by providing the highest quality, most cost effective service, which is accessible and sensitive to all.</p>
-          
+
         </div>
       </div>
     </div>
@@ -243,7 +244,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
           <h3>News And Post</h3>
           <p class="w3-opacity"></p>
           <p>Due To Covid-19 Mask must be worn at all times at our locations. </p>
-          
+
         </div>
       </div>
     </div>
@@ -291,7 +292,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-   
+
   <p>Powered by <a href="Rover.html" title="W3.CSS" target="_blank" class="w3-hover-text-green">Rover</a></p>
 </footer>
 
@@ -313,15 +314,15 @@ function showDivs(n) {
   var i;
   var x = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("demodots");
-  if (n > x.length) {slideIndex = 1}    
+  if (n > x.length) {slideIndex = 1}
   if (n < 1) {slideIndex = x.length} ;
   for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";  
+    x[i].style.display = "none";
   }
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" w3-white", "");
   }
-  x[slideIndex-1].style.display = "block";  
+  x[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " w3-white";
 }
 </script>
