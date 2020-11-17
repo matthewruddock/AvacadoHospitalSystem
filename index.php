@@ -1,5 +1,16 @@
 <!DOCTYPE html>
-<?php sesson_start();?>
+<?php session_start();
+$_SESSION["role"]="Doctor";
+if($_SESSION["role"]=="Guest"){
+$rowcol="w3-row w3-large w3-light-grey";
+$navClass="w3-col s3";
+$AClass="w3-button w3-block";
+}else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
+  $navClass="row";
+  $rowcol="col-md-8";
+  $AClass="col-md-2 cell";
+};
+?>
 <html>
 <title>Avacodo Hospital System</title>
 <meta charset="UTF-8">
@@ -55,16 +66,31 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 <!-- Links (sit on top) -->
 <div class="w3-top">
 
-  <div class="w3-row w3-large w3-light-grey">
-    <div class="w3-col s3">
-      <a href="#" class="w3-button w3-block">Home</a>
+  <div class=<?php echo '"'.$rowcol.'"';?>>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="#" class=<?php echo '"'.$AClass.'"';?>>Home</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#plans" class="w3-button w3-block">Appointments</a>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="#plans" class=<?php echo '"'.$AClass.'"';?>>Appointments</a>
     </div>
-    <div class="w3-col s3">
-      <a href="#about" class="w3-button w3-block">About</a>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a>
     </div>
+    <?php if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
+    echo "  <div class= '$navClass'>
+        <a href='#' class='$AClass'>Edit Profile</a>
+      </div>
+      <div class='$navClass'>
+         <a href='#' class='$AClass'>Login Patient</a>
+       </div>
+       <div class='$navClass'>
+          <a href='#' class='$AClass'>Register Patient</a>
+        </div>
+        <div class='$navClass'>
+           <a href='#' class='$AClass'>Search Patient</a>
+         </div>";
+    };?>
+    <?php ?>
     <div class="w3-col s3">
 
 	  <div class="dropdown">
@@ -84,7 +110,8 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
 <!-- Content -->
 <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
-
+  <br>
+  <br>
   <div class="w3-panel">
     <h1><b><img src="logo.png" style="width:20%">Avacodo Hospital System</b></h1>
     <p></p>
