@@ -1,8 +1,102 @@
-   <?php 
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+  header("location: welcome.php");
+  exit;
+}
+ 
+// Include config file
+require_once "config.php";
+ 
+// Define variables and initialize with empty values
+$email = $password = $staffId = "";
+$email_err = $password_err = $staffId_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Check if email is empty
+    if(empty(trim($_POST["email"]))){
+        $email_err = "Please enter Email.";
+    } else{
+        $email = trim($_POST["email"]);
+	}
+	
+	// Check if staffId is empty
+    if(empty(trim($_POST["staffId"]))){
+        $staffId_err = "Please enter Staff ID.";
+    } else{
+        $staffId = trim($_POST["staffId"]);
+    }
+    
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter your password.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate credentials
+    if(empty($email_err) && empty($password_err)){
+        // Prepare a select statement
+        $sql = "SELECT id, Email, StaffID, Password, Role FROM users WHERE Email = ? OR StaffID = ?";
+        
+        if($stmt = mysqli_prepare($conn, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_email,$param_staffId);
+            
+            // Set parameters
+			$param_email = $email;
+			$param_staffId = $staffId;
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
+                mysqli_stmt_store_result($stmt);
+                
+                // Check if email or staffId exists, if yes then verify password
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $id, $email, $staffId,$hashed_password, $role);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if(password_verify($password, $hashed_password)){
+                            // Password is correct, so start a new session
+                            session_start();
+                            
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+							$_SESSION["email"] = $email;
+							$_SESSION["role"] = $role;                              
+                            
+                            // Redirect user to welcome page
+                            header("location: welcome.php");
+                        } else{
+                            // Display an error message if password is not valid
+                            $password_err = "The password you entered was not valid.";
+                        }
+                    }
+                } else{
+                    // Display an error message if username doesn't exist
+					$email_err = "No account found with that Email.";
+					$staffId_err = "No account found with that Staff ID.";
+                }
+            } else{
+                echo "Oops! Something went wrong. Please try again later.";
+            }
 
-   ?>
-  
-
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
+    
+    // Close connection
+    mysqli_close($conn);
+}
+?>
    <!DOCTYPE html>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<!-- Add icon library -->
@@ -166,19 +260,31 @@
 										<div class="imgcontainer">
 											<img src="admin.png" alt ="logo" style="width:100px">  
 										</div>
-										<label for="uname"><b>Email / StaffID</b></label>
-										<input type="text" placeholder="Enter Username" title="No Space OR Numbers is allowed" 
-											name="username" pattern="[a-zA-Z0-9]+" value="<?php echo $username; ?>" required  ></br>
-											<?php echo $username_err; ?>
+										<div>
+											<label for="email"><b>Email</b></label>
+											<input type="text" placeholder="Enter Email" title="No Space is allowed" 
+												name="email" value="<?php echo $email ?>"></br>
+												<?php echo $username_err; ?>
+										</div>
+
+										<div>
+											<label for="staffId"><b>Staff ID</b></label>
+											<input type="text" placeholder="Enter Staff ID" title="No Space is allowed" 
+												name="staffId" value="<?php echo $email ?>"></br>
+												<?php echo $username_err; ?>
+										</div>
 										
-										<label for="psw"><b>Password</b></label>
-										<input type="password" placeholder="Enter Password" name="password" required></br>
-										<?php echo $password_err; ?>
+										<div>
+											<label for="psw"><b>Password</b></label>
+											<input type="password" placeholder="Enter Password" name="password" required></br>
+											<?php echo $password_err; ?>
+										</div>
+										
 							
 										<button type="submit" class="loginbtn">Login </button>
 										<label>
 											<input type="checkbox" checked="checked" name="remember"> Remember me</br>
-											<span class="psw">Forgot <a href="#">password?</a></span>		 
+											<span class="psw">Forgot <a href="reset_password.php">password?</a></span>		 
 										</label></br></br></br>
 									</form>
 								</div>
