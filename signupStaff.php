@@ -308,7 +308,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <header>
 			<nav>
             	<div class="header"></br>
-                	<img src="logo.png" alt ="logo" style="width:10%"> 
+                	<img src="imgs/logo.png" alt ="logo" style="width:10%"> 
                 </div>
 
                 <div class="header">

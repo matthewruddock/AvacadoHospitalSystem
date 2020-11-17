@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  header("location: welcome.php");
+  header("location: index.php");
   exit;
 }
  
@@ -73,7 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							$_SESSION["role"] = $role;                              
                             
                             // Redirect user to welcome page
-                            header("location: welcome.php");
+                            header("location: index.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -157,7 +157,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			}
 			.bg-img {
 			/* The image used */
-				background-image: url("nursing.png");
+				background-image: url("imgs/nursing.png");
 				min-height: 580px;
 				/* Center and scale the image nicely */
 				background-repeat: no-repeat;
@@ -235,7 +235,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             	<header>
 			    	<nav>
 							<div class="header"></br>
-								  <img src="logo.png" style="width:10%">
+								  <img src="imgs/logo.png" style="width:10%">
 							</div>
 
 							<div class="header">
@@ -258,7 +258,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<div align = "center">
 									<form method="POST" action=" "> 
 										<div class="imgcontainer">
-											<img src="admin.png" alt ="logo" style="width:100px">  
+											<img src="imgs/doctor.png" alt ="logo" style="width:100px">  
 										</div>
 										<div>
 											<label for="email"><b>Email</b></label>
