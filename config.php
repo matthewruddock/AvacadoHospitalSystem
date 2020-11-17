@@ -12,6 +12,11 @@
 	// Check connection
 	if ($conn=== false) {
 		die("ERROR: Could not connect. " . mysqli_connect_error());
+		// Create Database
+		include 'createDB.php';
+
+		//Create Tables
+		include 'createTableDB.php';
 	}
 	echo 'Connected successfully';
 ?>
