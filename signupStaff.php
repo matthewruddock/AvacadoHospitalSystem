@@ -46,9 +46,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["staffId"]))){
         $role_err = "Please enter a Staff ID.";
     } else if(strlen(trim($_POST["staffId"])) < 4){
-        $staffId_err = "Staff ID must  have atleast 4 characters.";
+        $staffId_err = "Staff ID must have atleast 4 characters.";
     } else{
-        $staffId = trim($POST["staffId"]);
+        $staffId = trim($_POST["staffId"]);
     }
 
 
@@ -57,6 +57,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $role_err= "<p style='color:red; font-weight:bold'>Gender is required";
   
     }else {
+        $role = trim($_POST["role"]);
         // check if user selected male or female
         if (!preg_match("/Nurse|Doctor/",$role)) {
            $role_err= "<p style='color:red; font-weight:bold'>Please select Male or Female";
@@ -93,15 +94,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_bind_param($stmt, "ssss", $param_email, $param_staffId, $param_pwd, $param_role);
             
 			// Set parameters
-			$param_staffId = "doc100";
-			$param_role = "Doctor";
+			$param_staffId = $staffId;
+			$param_role = $role;
             $param_email = $email;
             $param_pwd = password_hash($pwd, PASSWORD_DEFAULT); // Creates a password hash
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
-                //header("location: loginStaff.php");
+                header("location: loginStaff.php");
             } else{
                 echo "<p style='color:red; font-weight:bold'>2. Something went wrong. Please try again later.";
             }
@@ -344,13 +345,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                                                 <div <?php echo (!empty($staffId_err)) ? 'has-error' : ''; ?>">
                                                     <label>Staff ID:</label> </br>
-                                                    <input type="text" placeholder="Enter Staff ID" name="staffId" required></br>
+                                                    <input type="text" placeholder="Enter Staff ID" name="staffId"></br>
                                                 </div>
 
                                                 <div <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
                                                 <label for="role">Choose a Role:</label>
                                                     <select name="role" id="role">
                                                         <option <?php if($role=='') echo 'selected'; ?>  value="">SELECT A ROLE</option>
+                                                        <option <?php if($role=='Admin') echo 'selected'; ?> value="Admin">Admin</option>
                                                         <option <?php if($role=='Doctor') echo 'selected'; ?> value="Doctor">Doctor</option>
                                                         <option <?php if($role=='Nurse') echo 'selected'; ?> value="Nurse">Nurse</option>
                                                     </select>
