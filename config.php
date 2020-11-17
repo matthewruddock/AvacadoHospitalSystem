@@ -2,7 +2,7 @@
 	/* Database credentials*/
 	$servername= "localhost";
 	$dbUsername= "root";
-	$dbPassword="root";
+	$dbPassword="";
 	$dbName ="avocadoMC_DB";
 
 	//Attempt to connect to MySQL database
