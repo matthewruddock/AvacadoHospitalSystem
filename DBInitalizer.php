@@ -13,7 +13,7 @@
 	if (!$conn){
 		die("Connection failed: " .mysqli_connect_error());
 	}
-
+	
 	//Create Database
 	$sql = "CREATE DATABASE avocadoMC_DB";
 	if(mysqli_query($conn,$sql)){
@@ -21,7 +21,7 @@
 	} else {
 	//	echo "\nError creating database: ".mysqli_error($conn);
 	}
-
+	
 	//Code to see if Table Exists
 
 	//Create Staff Table if doesn't exist
@@ -38,32 +38,89 @@
 	if ($query === TRUE) {
 	//	echo "\nStaff table created";
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc111','John','john@example.com', 'hello0000', 'Admin' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?, ?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='AM001';
+	$param_staffName='admin';
+	$param_email='admin@mail.com';
+	$param_pwd = password_hash('admin1000', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Admin';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
 
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc882','John','ewe88@example.com', 'hello0000', 'Admin' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?,?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='AM002';
+	$param_staffName='Bob Manley';
+	$param_email='bobmanley@mail.com';
+	$param_pwd = password_hash('admin1111', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Admin';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
 
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc111','John','john@example.com', 'hello0000', 'Nurse' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?,?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='NUR001';
+	$param_staffName='Ashley Moore';
+	$param_email='ashleymoore@gmail.com';
+	$param_pwd = password_hash('ashley2020', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Nurse';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
+
 
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc882','John','ewe88@example.com', 'hello0000', 'Nurse' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?,?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='NUR002';
+	$param_staffName='Samantha Issacs';
+	$param_email='sammy7887@gmail.com';
+	$param_pwd = password_hash('sam7887', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Nurse';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
 
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc882','John','ewe88@example.com', 'hello0000', 'Nurse' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?,?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='NUR003';
+	$param_staffName='Kimberly Hilton';
+	$param_email='kimhilton@gmail.com';
+	$param_pwd = password_hash('kimmypass10', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Nurse';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
 
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc111','John','john@example.com', 'hello0000', 'Doctor' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?,?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='DOC001';
+	$param_staffName='John Lee';
+	$param_email='johnlee10@gmail.com';
+	$param_pwd = password_hash('johnchina77', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Doctor';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);  
 
 	$insertStaffSql = "INSERT INTO avocadoMC_DB.Staff (StaffID, Name, Email, Password, Type)
-	VALUES ('doc882','John','ewe88@example.com', 'hello0000', 'Doctor' )";
-	mysqli_query($conn, $insertStaffSql);
+	VALUES (?, ?, ?, ?,?)";
+	$stmt = mysqli_prepare($conn, $insertStaffSql);
+	mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
+	$param_staffId='DOC002';
+	$param_staffName='Matthew Black';
+	$param_email='matthewblack07@gmail.com';
+	$param_pwd = password_hash('black007', PASSWORD_DEFAULT); // Creates a password hash
+	$param_type='Doctor';
+	mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt); 
 
 	} else {
 		//echo "\nStaff table NOT created"; 
@@ -85,23 +142,23 @@
 	$query = mysqli_query($conn, $tbl_Patient);
 	if ($query === TRUE) {
 		$insertPatientSql = "INSERT INTO avocadoMC_DB.Patient (PatientTRN, Title, FirstName, LastName, DateOfBirth, Address, TelNo, Email)
-		VALUES ('7723232', 'Mr','John', 'Rudd', '2010-10-10', 'Hatfield, JA', '876-900-1122', 'john@example.com')";
+		VALUES ('133444221', 'Mr','John', 'Mitchell', '2000-10-10', 'East Rd 15, Westwood', '876-900-1122', 'johnmitch@gmail.com')";
 		mysqli_query($conn, $insertPatientSql);
 
 		$insertPatientSql = "INSERT INTO avocadoMC_DB.Patient (PatientTRN, Title, FirstName, LastName, DateOfBirth, Address, TelNo, Email)
-		VALUES ('53222177', 'Ms','Moe', 'Rudd','2010-10-10','Hatfield, JA', '876-900-7216', 'jsak@example.com')";
+		VALUES ('890134567', 'Ms','Moesha', 'Gaye','1987-06-11','Kings Street 33, Hampton', '876-900-7216', 'moeshagaye10@gmail.com')";
 		mysqli_query($conn, $insertPatientSql);
 
 		$insertPatientSql = "INSERT INTO avocadoMC_DB.Patient (PatientTRN, Title, FirstName, LastName, DateOfBirth, Address, TelNo, Email)
-		VALUES ('53222177', 'Ms','Moe', 'Rudd','2010-10-10','Hatfield, JA', '876-900-7216', 'jsak@example.com')";
+		VALUES ('777812331', 'Ms','Abbygale', 'Green','1999-08-03','Redwood Drive 17, Greenland', '876-288-9182', 'abbygreen18@gmail.com')";
 		mysqli_query($conn, $insertPatientSql);
 
 		$insertPatientSql = "INSERT INTO avocadoMC_DB.Patient (PatientTRN, Title, FirstName, LastName, DateOfBirth, Address, TelNo, Email)
-		VALUES ('53222177', 'Ms','Moe', 'Rudd','2010-10-10','Hatfield, JA', '876-900-7216', 'jsak@example.com')";
+		VALUES ('447880323', 'Ms','Gabby', 'McIntosh','1997-02-07','Bluehouse 18, Tribit', '876-466-8822', 'gabbymc78@gmail.com')";
 		mysqli_query($conn, $insertPatientSql);
 
 		$insertPatientSql = "INSERT INTO avocadoMC_DB.Patient (PatientTRN, Title, FirstName, LastName, DateOfBirth, Address, TelNo, Email)
-		VALUES ('53222177', 'Ms','Moe', 'Rudd','2010-10-10','Hatfield, JA', '876-900-7216', 'jsak@example.com')";
+		VALUES ('675555111', 'Ms','Donald', 'Reid','1992-02-09','Llandilo 17, London', '876-278-0001', 'donaldreid@hotmail.com')";
 		mysqli_query($conn, $insertPatientSql);
 	
 
@@ -122,17 +179,25 @@
 	$query = mysqli_query($conn, $tbl_Appointment);
 	if ($query === TRUE) {
 		//echo "\nAppointment table created"; 
-		$insertAppointmentSql = "INSERT INTO avocadoMC_DB.Appointment (id, PatientTRN, StaffID, Date, ReasonForVisit, Status)
-		VALUES (NULL, '7728832','doc1000','2020-02-02', 'headache','Pending')";
-		mysqli_query($conn, $insertAppointmentSql);
+		$query1 = "SELECT PatientTRN FROM avocadoMC_DB.Appointment WHERE PatientTRN ='133444221' AND Date = '2020-11-02'";
+		$result = mysqli_query($conn, $query1);
+		if($result){
+			if(mysqli_num_rows($result) == 0){
+			$insertAppointmentSql = "INSERT INTO avocadoMC_DB.Appointment (id, PatientTRN, StaffID, Date, ReasonForVisit, Status)
+			VALUES (NULL, '133444221','DOC001','2020-11-02', 'Headache','Pending')";
+			mysqli_query($conn, $insertAppointmentSql);
+	
+			$insertAppointmentSql = "INSERT INTO avocadoMC_DB.Appointment (id, PatientTRN, StaffID, Date, ReasonForVisit, Status)
+			VALUES (NULL, '890134567', 'DOC001', '2020-11-10', 'Back pains', 'Cancelled')";
+			mysqli_query($conn, $insertAppointmentSql);
+	
+			$insertAppointmentSql = "INSERT INTO avocadoMC_DB.Appointment (id, PatientTRN, StaffID, Date, ReasonForVisit, Status)
+			VALUES (NULL, '447880323', 'DOC002', '2020-11-12', 'Check-up', 'Complete')";
+			mysqli_query($conn, $insertAppointmentSql);
+			} 
+			
+		}
 
-		$insertAppointmentSql = "INSERT INTO avocadoMC_DB.Appointment (id, PatientTRN, StaffID, Date, ReasonForVisit, Status)
-		VALUES (NULL, '9232333', 'doc199', '2020-09-10', 'headache', 'Cancelled')";
-		mysqli_query($conn, $insertAppointmentSql);
-
-		$insertAppointmentSql = "INSERT INTO avocadoMC_DB.Appointment (id, PatientTRN, StaffID, Date, ReasonForVisit, Status)
-		VALUES (NULL, '9232333', 'doc199', '2020-09-10', 'headache', 'Complete')";
-		mysqli_query($conn, $insertAppointmentSql);
 
 	} else {
 		//echo "\nAppointment table NOT created"; 
