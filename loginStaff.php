@@ -4,12 +4,12 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-  header("location: index.php");
-  exit;
+  	header("location: index.php");
+  	exit;
 }
  
 // Include config file
-require_once "config.php";
+include_once "config.php";
  
 // Define variables and initialize with empty values
 $email = $password = $staffId = "";
@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($email_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT id, Email, StaffID, Password, Role FROM users WHERE Email = ? OR StaffID = ?";
+        $sql = "SELECT StaffID, Name, Email, Password, Type FROM Staff WHERE Email = ? OR StaffID = ?";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if email or staffId exists, if yes then verify password
                 if(mysqli_stmt_num_rows($stmt) == 1){                    
                     // Bind result variables
-                    mysqli_stmt_bind_result($stmt, $id, $email, $staffId,$hashed_password, $role);
+                    mysqli_stmt_bind_result($stmt, $staffId, $staffName, $email, $hashed_password, $type);
                     if(mysqli_stmt_fetch($stmt)){
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -68,9 +68,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
+							$_SESSION["staffId"] = $staffId;
+							$_SESSION["staffName"] = $staffName;
 							$_SESSION["email"] = $email;
-							$_SESSION["role"] = $role;                              
+							$_SESSION["type"] = $type;                              
                             
                             // Redirect user to welcome page
                             header("location: index.php");

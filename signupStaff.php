@@ -1,11 +1,21 @@
 <?php
 // Include config file
 
-require_once "config.php";
- 
-// Define variables and initialize with empty values
-$email = $pwd = $pwd_repeat = $role = $staffId ="";
-$email_err = $pwd_err = $pwd_repeat_err  = $role_err = $staffId_err = "";
+include_once "config.php";
+if(isset($_SESSION['resultFlag']))
+{
+	foreach($_SESSION as $key => $value)	//store SESSION values in to local variables
+	{
+		$$key = $value;
+	}
+	session_destroy();		//destroys the session once the values are loaded. REFRESH to clear the fields
+}
+else{
+	// Define variables and initialize with empty values
+	$email = $pwd = $pwd_repeat = $type = $staffId = $staffName="";
+	$email_err = $pwd_err = $pwd_repeat_err  = $type_err = $staffId_err = $staffName_err="";
+}
+
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -15,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email_err = "Please enter a Email.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE Email = ?";
+        $sql = "SELECT Email FROM Staff WHERE Email = ?";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -44,23 +54,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     // Validate Staff ID
     if(empty(trim($_POST["staffId"]))){
-        $role_err = "Please enter a Staff ID.";
+        $staffId_err = "Please enter a Staff ID.";
     } else if(strlen(trim($_POST["staffId"])) < 4){
         $staffId_err = "Staff ID must have atleast 4 characters.";
     } else{
         $staffId = trim($_POST["staffId"]);
+	}
+	
+	// Validate Staff Name
+    if(empty(trim($_POST["staffName"]))){
+        $staffName_err = "Please enter a Staff Name.";
+    } else{
+        $staffName = trim($_POST["staffName"]);
     }
 
 
-    // Validate Role
-    if (empty($_POST["role"])) {
-        $role_err= "<p style='color:red; font-weight:bold'>Gender is required";
+    // Validate type
+    if (empty($_POST["type"])) {
+        $type_err= "<p style='color:red; font-weight:bold'>Gender is required";
   
     }else {
-        $role = trim($_POST["role"]);
+        $type = trim($_POST["type"]);
         // check if user selected male or female
-        if (!preg_match("/Nurse|Doctor/",$role)) {
-           $role_err= "<p style='color:red; font-weight:bold'>Please select Male or Female";
+        if (!preg_match("/Nurse|Doctor/",$type)) {
+           $type_err= "<p style='color:red; font-weight:bold'>Please select Male or Female";
         }
     }
 
@@ -84,21 +101,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     var_dump($_POST);
     // Check input errors before inserting in database
-    if(empty($email_err) && empty($pwd_err) && empty($pwd_repeat)){
+    if(empty($email_err) && empty($pwd_err)  && empty($staffName_err)   && empty($staffId_err) && empty($pwd_repeat)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (Email, StaffID, Password, Role) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Staff (StaffID, Name, Email, Password, Type) VALUES (?, ?, ?, ?,?)";
          
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssss", $param_email, $param_staffId, $param_pwd, $param_role);
+            mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
             
 			// Set parameters
 			$param_staffId = $staffId;
-			$param_role = $role;
-            $param_email = $email;
+			$param_staffName = $staffName;
+			$param_email = $email;
             $param_pwd = password_hash($pwd, PASSWORD_DEFAULT); // Creates a password hash
-            
+			$param_type = $type;
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
@@ -337,24 +354,30 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 												<h1>Staff Sign Up</></h1>
 												<p><font color="yellow">Please fill in this form to create an account.</font></p>
 												
+                                                <div <?php echo (!empty($staffId_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Staff ID:</label> </br>
+                                                    <input type="text" placeholder="Enter Staff ID" name="staffId"></br>
+                                                </div>
+
 												<div <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
 													<label>Email address</label> </br>
 													<input type="text" placeholder="Enter Email" name="email" required></br>
 													<span class="help-block"><?php echo $email_err; ?></span>
 												</div>
 
-                                                <div <?php echo (!empty($staffId_err)) ? 'has-error' : ''; ?>">
-                                                    <label>Staff ID:</label> </br>
-                                                    <input type="text" placeholder="Enter Staff ID" name="staffId"></br>
-                                                </div>
+												<div <?php echo (!empty($staffName_err)) ? 'has-error' : ''; ?>">
+													<label>Name:</label> </br>
+													<input type="text" placeholder="Enter Name" name="staffName" required></br>
+													<span class="help-block"><?php echo $staffName_err; ?></span>
+												</div>
 
-                                                <div <?php echo (!empty($role_err)) ? 'has-error' : ''; ?>">
-                                                <label for="role">Choose a Role:</label>
-                                                    <select name="role" id="role">
-                                                        <option <?php if($role=='') echo 'selected'; ?>  value="">SELECT A ROLE</option>
-                                                        <option <?php if($role=='Admin') echo 'selected'; ?> value="Admin">Admin</option>
-                                                        <option <?php if($role=='Doctor') echo 'selected'; ?> value="Doctor">Doctor</option>
-                                                        <option <?php if($role=='Nurse') echo 'selected'; ?> value="Nurse">Nurse</option>
+                                                <div <?php echo (!empty($type_err)) ? 'has-error' : ''; ?>">
+                                                <label for="type">Choose a type:</label>
+                                                    <select name="type" id="type">
+                                                        <option <?php if($type=='') echo 'selected'; ?>  value="">Choose a Type</option>
+                                                        <option <?php if($type=='Admin') echo 'selected'; ?> value="Admin">Admin</option>
+                                                        <option <?php if($type=='Doctor') echo 'selected'; ?> value="Doctor">Doctor</option>
+                                                        <option <?php if($type=='Nurse') echo 'selected'; ?> value="Nurse">Nurse</option>
                                                     </select>
                                                 </div>
 
@@ -379,7 +402,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 													<button type="submit" class="signupbtn">Sign Up</button>
 												</div>
-												<p>Already have an account? <a href="loginStaff">Login here</a>.</p>
+												<p>Already have an account? <a href="loginStaff.php">Login here</a>.</p>
 										    </div>          
 								  		</form>
 									</div>

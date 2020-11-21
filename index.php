@@ -2,26 +2,27 @@
   // Initialize the session
   session_start();
   
-  require_once "config.php";
+  require_once "DBInitalizer.php";
 
   // Check if the user is already logged in, if yes then redirect him to welcome page
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: index.php");
-    exit;
+    //header("location: welcome.php");
+    //exit;
   }
 ?>
 <!DOCTYPE html>
 <?php session_start();
-$_SESSION["role"]="Doctor";
-if($_SESSION["role"]=="Guest"){
-$rowcol="w3-row w3-large w3-light-grey";
-$navClass="w3-col s3";
-$AClass="w3-button w3-block";
-}else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
-  $navClass="row";
-  $rowcol="col-md-8";
-  $AClass="col-md-2 cell";
-};
+  $_SESSION["role"]="Doctor";
+
+  if($_SESSION["role"]=="Guest"){
+    $rowcol="w3-row w3-large w3-light-grey";
+    $navClass="w3-col s3";
+    $AClass="w3-button w3-block";
+  }else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
+    $navClass="row";
+    $rowcol="col-md-8";
+    $AClass="col-md-2 cell";
+  };
 ?>
 <html>
 <title>Avacodo Hospital System</title>
@@ -108,10 +109,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 	  <div class="dropdown">
 	 <a> <button class="dropbtn"><img src="login.jfif" style="width:25%"></button></a>
 	  <div class="dropdown-content">
-      <a href="loginGuest.php">Guest Login</a>
       <a href="loginStaff.php">Staff Login</a>
-      <a href="loginAdmin.php">Admin Login</a>
-      <a href="signupGuest.php">Guest Sign Up</a>
       <a href="signupStaff.php">Staff Sign Up</a>
 	  </div>
 	</div>

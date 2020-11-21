@@ -10,14 +10,10 @@
 	$conn = mysqli_connect ($servername,$dbUsername,$dbPassword,$dbName);
 
 	// Check connection
-	if ($conn=== false) {
-		die("ERROR: Could not connect. " . mysqli_connect_error());
-		// Create Database
-		include 'createDB.php';
-
-		//Create Tables
-		include 'createTableDB.php';
+	if ($conn=== false){
+		die("Connection failed: " .mysqli_connect_error());
+	}else{
+		echo "Connection established";
 	}
-	echo 'Connected successfully';
 ?>
 

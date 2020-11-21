@@ -40,15 +40,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before updating the database
     if(empty($pwd_err) && empty($pwd_repeat_err)){
         // Prepare an update statement
-        $sql = "UPDATE users SET Password = ? WHERE id = ?";
+        $sql = "UPDATE Staff SET Password = ? WHERE StaffID = ?";
         
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
+            mysqli_stmt_bind_param($stmt, "si", $param_password, $param_staffId);
             
             // Set parameters
             $param_password = password_hash($pwd, PASSWORD_DEFAULT);
-            $param_id = $_SESSION["id"];
+            $param_staffId = $_SESSION["staffId"];
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){

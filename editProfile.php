@@ -1,1 +1,3 @@
-editProfile.php
+<?php
+include_once "config.php";
+?>
