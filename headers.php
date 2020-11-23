@@ -1,16 +1,15 @@
 <?php
-error_reporting(0);
-include("dbconnection.php");
-$dt = date("Y-m-d");
-$tim = date("H:i:s");
+	error_reporting(0);
+	include("dbconnection.php");
+	$dt = date("Y-m-d");
+	$tim = date("H:i:s");
 ?>
 <!DOCTYPE html>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <html>
-           
-			 <style>
+		<style>
 					* {box-sizing: border-box;}
 
 					body { 
@@ -186,7 +185,7 @@ $tim = date("H:i:s");
 							  min-height: 580px;
 
 							  /* Center and scale the image nicely */
-							  background-position: ;
+							  background-position: center;
 							  background-repeat: no-repeat;
 							  background-size: cover;
 							  position: relative;
@@ -335,15 +334,15 @@ input[type=number]{
   </div>
       <div style="text-align:center">
 <?php
-if(isset($_SESSION[adminid]))
+if(isset($_SESSION["adminid"]))
 {
 include("menu.php");
 }
-if(isset($_SESSION[patientid]))
+if(isset($_SESSION["patientid"]))
 {
 include("menu.php");
 }
-if(isset($_SESSION[doctorid]))
+if(isset($_SESSION["doctorid"]))
 {
 include("menu.php");
 }

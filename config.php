@@ -1,17 +1,19 @@
 <?php 
+	/* Database credentials*/
+	$servername= "localhost";
+	$dbUsername= "root";
+	$dbPassword="root";
+	//$dbPassword="";
+	$dbName ="avocadoMC_DB";
 
-				$servername= "localhost";
-				$dBusername= "root";
-				$dBPassword="";
-				$dBName ="loginsystem";
+	//Attempt to connect to MySQL database
+	$conn = mysqli_connect ($servername,$dbUsername,$dbPassword,$dbName);
 
-						$conn = mysqli_connect ($servername,$dBusername,$dBPassword,$dBName);
-
-							   if(! $conn ) {
-									die('Could not connect: ' . mysqli_error());
-								 }
-								 echo 'Connected successfully';
-								 mysqli_close($conn);
-
+	// Check connection
+	if ($conn=== false){
+		die("Connection failed: " .mysqli_connect_error());
+	}else{
+		echo "Connection established";
+	}
 ?>
 
