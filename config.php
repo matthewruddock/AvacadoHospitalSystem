@@ -1,8 +1,8 @@
-<?php 
+<?php
 	/* Database credentials*/
 	$servername= "localhost";
 	$dbUsername= "root";
-	$dbPassword="root";
+	$dbPassword="";
 	//$dbPassword="";
 	$dbName ="avocadoMC_DB";
 
@@ -16,4 +16,3 @@
 		echo "Connection established";
 	}
 ?>
-
