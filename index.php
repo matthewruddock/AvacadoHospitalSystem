@@ -11,8 +11,8 @@
   }
 ?>
 <!DOCTYPE html>
-<?php 
-  $_SESSION["role"]="Doctor";
+<?php
+  $_SESSION["role"]="Guest";
 
   if($_SESSION["role"]=="Guest"){
     $rowcol="w3-row w3-large w3-light-grey";
@@ -88,6 +88,9 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     </div>
     <div class=<?php echo '"'.$navClass.'"';?>>
       <a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a>
+    </div>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="BMI.php" class=<?php echo '"'.$AClass.'"';?>>BMI</a>
     </div>
     <?php if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
     echo "  <div class= '$navClass'>
