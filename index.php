@@ -11,7 +11,7 @@
   }
 ?>
 <!DOCTYPE html>
-<?php session_start();
+<?php 
   $_SESSION["role"]="Doctor";
 
   if($_SESSION["role"]=="Guest"){
