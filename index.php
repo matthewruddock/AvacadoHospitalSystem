@@ -110,7 +110,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     <div class="w3-col s3">
 
 	  <div class="dropdown">
-	 <a> <button class="dropbtn"><img src="login.jfif" style="width:25%"></button></a>
+	 <a> <button class="dropbtn"><img src="imgs\login.png" style="width:25%"></button></a>
 	  <div class="dropdown-content">
       <a href="loginStaff.php">Staff Login</a>
       <a href="signupStaff.php">Staff Sign Up</a>
