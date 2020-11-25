@@ -319,8 +319,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 	<div class="bg-img">
 								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
 											<div class="container">
-												<h1>Staff Sign Up</></h1>
-												<p><font color="yellow">Please fill in this form to create an account.</font></p>
+												<h1>Edit Account</></h1>
+												<p><font color="yellow">Please fill in this form to Edit an account.</font></p>
 
 												<div <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
 													<label>Email address</label> </br>
