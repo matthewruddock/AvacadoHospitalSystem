@@ -353,8 +353,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 	<div class="bg-img">
 								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
 											<div class="container">
-												<h1>Add User</></h1>
-												<p><font color="yellow">Please fill in this form to create an account.</font></p>
+												<h1>Add Account</></h1>
+												<p><font color="yellow">Please fill in this form to Add an account.</font></p>
 												
                                                 <div <?php echo (!empty($staffId_err)) ? 'has-error' : ''; ?>">
                                                     <label>Staff ID:</label> </br>
