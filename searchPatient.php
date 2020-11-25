@@ -7,7 +7,7 @@ $TRNSearch="";
 <html>
         <head>
             <meta charset="utf-8">
-            <title>View Account</title>
+            <title>Search Patient</title>
             <link rel="stylesheet" href="css/style.css" />
         </head>
         <body>
@@ -46,6 +46,8 @@ $TRNSearch="";
                         </tr>";
 
                 }
+                //close connection
+                mysqli_close($conn);
             }
             ?>
           </table>
