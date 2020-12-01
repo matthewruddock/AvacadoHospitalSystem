@@ -9,10 +9,11 @@ $TRNSearch="";
             <meta charset="utf-8">
             <title>Search Patient</title>
             <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="bootstrap.css"/>
         </head>
         <body>
           <form  method="POST">
-          <div>
+          <div class="container">
             <h3>Search Patient</h3>
             PatientTRN: <input type="text" name="TRNSearch" placeholder="Enter TRN">
             <input type="submit" name="SearchBtn" value="Search">
