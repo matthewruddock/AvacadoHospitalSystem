@@ -22,12 +22,12 @@ $TRNSearch="";
             <table>
               <tr>
                   <th>Patient TRN</th>
-                  <td>Title</th>
-                  <td>First Name</td>
-                  <td>DOB</td>
-                  <td>Address</td>
-                  <td>Telephone Number</td>
-                  <td>Email</td>
+                  <th>Title</th>
+                  <th>First Name</th>
+                  <th>DOB</th>
+                  <th>Address</th>
+                  <th>Telephone Number</th>
+                  <th>Email</th>
               </tr>
             <?php
             if(isset($_POST['TRNSearch'])){

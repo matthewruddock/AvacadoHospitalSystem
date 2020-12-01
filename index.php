@@ -12,13 +12,13 @@
 ?>
 <!DOCTYPE html>
 <?php
-  $_SESSION["role"]="Guest";
+  $_SESSION["role"]="Admin";
 
   if($_SESSION["role"]=="Guest"){
     $rowcol="w3-row w3-large w3-light-grey";
     $navClass="w3-col s3";
     $AClass="w3-button w3-block";
-  }else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
+  }else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
     $navClass="row";
     $rowcol="col-md-8";
     $AClass="col-md-2 cell";
@@ -39,7 +39,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 .w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
 </style>
 <style>
-.dropbtn {
+.dropbtn   {
   background-color: light gray;
   color: white;
   padding: 16px;
@@ -92,20 +92,33 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     <div class=<?php echo '"'.$navClass.'"';?>>
       <a href="BMI.php" class=<?php echo '"'.$AClass.'"';?>>BMI</a>
     </div>
-    <?php if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
-    echo "  <div class= '$navClass'>
-        <a href='#' class='$AClass'>Edit Profile</a>
+    <?php
+     if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
+    echo "  <div class= '".$navClass."'>
+        <a href='editProfile.php' class='".$AClass."'>Edit Profile</a>
       </div>
-      <div class='$navClass'>
-         <a href='#' class='$AClass'>Login Patient</a>
+      <div class='".$navClass."'>
+         <a href='' class='".$AClass."'>Login Patient</a>
        </div>
-       <div class='$navClass'>
-          <a href='#' class='$AClass'>Register Patient</a>
+       <div class='".$navClass."'>
+          <a href='registerPatient.php' class='".$AClass."'>Register Patient</a>
         </div>
-        <div class='$navClass'>
-           <a href='#' class='$AClass'>Search Patient</a>
+        <div class='".$navClass."'>
+           <a href='searchPatient.php' class='$AClass'>Search Patient</a>
          </div>";
-    };?>
+
+
+
+    }
+
+    if($_SESSION["role"]=="Admin"){
+     echo " 
+        <div class= '".$navClass."'>
+           <a href='manageAccount.php' class='".$AClass."'>manageAccount</a>
+         </div>
+
+       ";
+    }?>
     <?php ?>
     <div class="w3-col s3">
 
