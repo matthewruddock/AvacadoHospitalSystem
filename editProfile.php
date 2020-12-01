@@ -2,8 +2,11 @@
 session_start();
 include_once "config.php";
 $_SESSION['StaffID']='AM002';
-$name=$email="";
-
+$name=$email=$nameerr=$emailerr="";
+foreach($_SESSION as $key => $value)	//store SESSION values in to local variables
+{
+  $$key = $value;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -34,10 +37,10 @@ $name=$email="";
 
                           <tr>
                           <td>Name:</td>
-                          <td><input name='name' type='text' value=".$rows['Name']."></td>
+                          <td><input name='name' type='text' value=".$rows['Name']."><br> ".$nameerr."</td>
                           </tr>
                           <td>Email:</td>
-                          <td><input name='email' type='text' value=".$rows['Email']."></td>
+                          <td><input name='email' type='text' value=".$rows['Email']."><br> ".$emailerr."</td>
                           </tr>
                           </tr>
                         <!--  <td>Password:</td>
@@ -50,6 +53,14 @@ $name=$email="";
                     if(isset($_POST['updatebtn'])){
                       $name=$_POST['name'];
                       $email=$_POST['email'];
+                      if($name==""){
+                        $_SESSION['nameerr']="<p style= 'color:red;'>Enter a valid name.</p>";
+                      }
+                      if(!filter_var($email,FILTER_VALIDATE_EMAIL)){//validate email if its a valid one
+                				 $_SESSION['emailerr']= "<p style= 'color:red;'>Email is invalid.</p>";
+
+                				 }
+
                       $updateQuery="UPDATE staff SET Name='$name',Email='$email' WHERE StaffID='$ID'";
                       mysqli_query($conn,$updateQuery);
                       unset(  $_POST['updatebtn'] );
