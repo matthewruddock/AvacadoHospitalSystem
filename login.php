@@ -93,7 +93,7 @@
 						<style>
 					   .bg-img {
 					  /* The image used */
-					  background-image: url("appointment.jpg");
+					  background-image: url("nursing.png");
 
 					  min-height: 580px;
 
@@ -202,26 +202,23 @@
 
 							   <div align = "center">
 							   
-								 <form method="POST" > 
+								 <form method="POST" action="includes/login.inc.php"> 
 										 <div class="imgcontainer">
-										
+										 <img src="admin.png" alt ="logo" style="width:100px">  
 										  </div>
-                                           <label>Make An Appointment</label></br>
-										   
-											<label for="uname"><b>First name</b></label>
-											<input type="text" placeholder="Enter Firstname" title="No Space OR Numbers is allowed" name="fname" pattern="[a-zA-Z0-9]+" required></br>
-											
-											<label for="uname"><b>Last name</b></label>
-											<input type="text" placeholder="Enter Lastname" title="No Space OR Numbers is allowed" name="lname" pattern="[a-zA-Z0-9]+" required></br>
-											
 
-											<label for="psw"><b>Date</b></label>
-											<input type="date" placeholder="Enter date" name="date" required></br>
+										   
+											<label for="uname"><b>Username</b></label>
+											<input type="text" placeholder="Enter Username" title="No Space OR Numbers is allowed" name="mailuid" pattern="[a-zA-Z0-9]+" required></br>
+
+											<label for="psw"><b>Password</b></label>
+											<input type="password" placeholder="Enter Password" name="pwd" required></br>
 											 <?php echo $err; ?>
 							
-											<button type="submit" class="loginbtn">Submit </button>
+											<button type="submit" class="loginbtn">Login </button>
 											<label>
-											 
+											<input type="checkbox" checked="checked" name="remember"> Remember me</br>
+											 <span class="psw">Forgot <a href="#">password?</a></span>		 
 											</label></br></br></br>
                          
 						                       </div>

@@ -68,7 +68,7 @@
 					  min-height: 580px;
 
 					  /* Center and scale the image nicely */
-					  background-position: center ;
+					  background-position: ;
 					  background-repeat: no-repeat;
 					  background-size: cover;
 					  position: relative;
