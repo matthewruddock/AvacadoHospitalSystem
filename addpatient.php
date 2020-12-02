@@ -176,12 +176,12 @@
                  <style>
 							   .bg-img {
 							  /* The image used */
-							  background-image: url("nurse.jpg");
+							  background-image: url("imgs/nurse.jpg");
 
 							  min-height: 580px;
 
 							  /* Center and scale the image nicely */
-							  background-position: ;
+							  background-position: center;
 							  background-repeat: no-repeat;
 							  background-size: cover;
 							  position: relative;
