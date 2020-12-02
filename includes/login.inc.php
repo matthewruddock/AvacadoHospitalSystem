@@ -1,18 +1,13 @@
-
 <?php 
-include("config.php");
+// Start session
 session_start();
-
-foreach($_POST as $key=>$value)
-{
-	$_SESSION['$key']=$value;
-}
-
  
 foreach($_POST as $key=>$value)
 {
+	
 	$_SESSION['$key']=$value;
 }
+
 	$err = "Invalid Credentials .";
 
 // Username and password
@@ -22,7 +17,9 @@ $data = $_POST;
 $password = $_POST['pwd'];
 
 if (isset($_POST["mailuid"]) && isset($_POST["pwd"])) { 
-      
+       
+		
+	
     if ($_POST["mailuid"] === $ID && $_POST["pwd"] === $pass) { 
     
     $_SESSION["inloggedin"] = true; 
@@ -36,6 +33,11 @@ if (isset($_POST["mailuid"]) && isset($_POST["pwd"])) {
 		
        //echo "Invalid Login Credentials";
 	}
-	  	
+	    
+		
 }
+
+
+
+
 ?> 

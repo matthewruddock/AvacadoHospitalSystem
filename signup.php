@@ -1,16 +1,10 @@
-<?php
-error_reporting(0);
-include("dbconnection.php");
-$dt = date("Y-m-d");
-$tim = date("H:i:s");
-?>
-<!DOCTYPE html>
+
+	<!DOCTYPE html>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <html>
-           
-			 <style>
+              <style>
 					* {box-sizing: border-box;}
 
 					body { 
@@ -181,7 +175,7 @@ $tim = date("H:i:s");
                  <style>
 							   .bg-img {
 							  /* The image used */
-							  background-image: url("nurse.jpg");
+							  background-image: url("nature.jpg");
 
 							  min-height: 580px;
 
@@ -192,15 +186,7 @@ $tim = date("H:i:s");
 							  position: relative;
 							}
                 </style>
-<style>
-divs {
-  background-color: gray;
-  width: 300px;
-  border: 15px solid black;
-  padding: 50px;
-  margin: 20px;
-}
-</style>
+
            <header>
 						<nav>
                           <div class="header"></br>
@@ -214,140 +200,69 @@ divs {
 
   
                          <div class="header-right">
-                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>LOG OUT</a>
-						<a href="patientdatadisplay.php"> <img src="avatar2.png" style="width:3%"></i>Registered Patient</a>
+                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
                        
 						 
 								   </div>
 					    </nav>
-						<br/><br/><br/><br/><br/><br/><br/>
-<script type="application/javascript">
-(function(document) {
-	'use strict';
+				      
+			  </br>
+		  <body>
 
-	var LightTableFilter = (function(Arr) {
 
-		var _input;
+        
+                    <main>
+	                              <div id="page-wrapper">
+ 
+	                    <section id="region-main" class="col-12">
 
-		function _onInputEvent(e) {
-			_input = e.target;
-			var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-			Arr.forEach.call(tables, function(table) {
-				Arr.forEach.call(table.tBodies, function(tbody) {
-					Arr.forEach.call(tbody.rows, _filter);
-				});
-			});
-		}
+									<div align = "center">
+									<div style = "width:410px; border: solid 1px #333333; " align = "left">
+									<div style = "background-color:#333333; color:#FFFFFF; padding:0px;"><b></b></div>
+				
+									<div style = "margin:0px">
+                                       <div class="bg-img">
+								 <form method="POST" action="includes/signup.inc.php"> 
+											<div class="container">
+											  <h1><font color="red">Sign Up</font></h1>
+											  <p><font color="yellow">Please fill in this form to create an account.</font></p>
+											 
+																				  
+											  <input type="text" placeholder="Enter User Name" name="uid" required></br>
 
-		function _filter(row) {
-			var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-			row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-		}
+											 
+											  <input type="text" placeholder="Enter Email" name="mail" required></br>
 
-		return {
-			init: function() {
-				var inputs = document.getElementsByClassName('light-table-filter');
-				Arr.forEach.call(inputs, function(input) {
-					input.oninput = _onInputEvent;
-				});
-			}
-		};
-	})(Array.prototype);
+											  
+											  <input type="password" placeholder="Enter Password" name="pwd" required></br>
 
-	document.addEventListener('readystatechange', function() {
-		if (document.readyState === 'complete') {
-			LightTableFilter.init();
-		}
-	});
+											 
+											  <input type="password" placeholder="Repeat Password" name="pwd-repeat" required></br>
+											  
+											  <label>
+												<input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"><font color="yellow"> Remember me</font></br>
+											  </label>
 
-})(document);
-</script>
-<style>
-input[type=submit]{
-background-color: #4CAF50; /* Green */ border: none; 
-cursor:pointer;
-color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;
-}
-input[type=reset]{
-background-color: #4CAF50; /* Green */ border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;
-}
-input[type=text]{
-	display: block;
-    width: 75%;
-    height: 24px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
-input[type=password]{
-	display: block;
-    width: 75%;
-    height: 24px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
+											  <p><font color="yellow">By creating an account you agree to our</font> <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
-input[type=number]{
-	display: block;
-    width: 75%;
-    height: 24px;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #555;
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-}
-</style>
-</head>
+											   <div class="clearfix">
+												<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+												<button type="submit" class="signupbtn">Sign Up</button>
+																			  </div>
+										               </div>
+									                   </div>
+								  </form>
+								                        </div>
+					    </section> 
+				                                        </div>
+			                                            </div>
+                                                        </div>
+                    </main>
+      </header>
+</body>
+</html>
 
-  <div id="head">
-    	 
-   
-  </div>
-      <div style="text-align:center">
-<?php
-if(isset($_SESSION[adminid]))
-{
-include("menu.php");
-}
-if(isset($_SESSION[patientid]))
-{
-include("menu.php");
-}
-if(isset($_SESSION[doctorid]))
-{
-include("menu.php");
-}
+<?php 
+ require "footer.php";
 
 ?>
-</div>
-</div>
