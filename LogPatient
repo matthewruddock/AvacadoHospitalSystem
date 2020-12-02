@@ -1,0 +1,67 @@
+<?php
+session_start();
+include_once "config.php";
+
+?>
+<!DOCTYPE html>
+<html>
+        <head>
+            <meta charset="utf-8">
+            <title>Log Patient</title>
+            <link rel="stylesheet" href="css/style.css" />
+            <link rel="stylesheet" href="bootstrap.css"/>
+        </head>
+        <body>
+          <form  method="POST">
+            <br/><br/><br/><br/>
+          <div class="container">
+            <h3>Search Appointment</h3>
+            <table>
+              <tr>
+                <td>PatientTRN:</td> <td><input type="text" name="TRNSearch" placeholder="Enter TRN"></td>
+                </tr>
+                 <tr>
+                   <td>Reason:</td> <td> <input type="text" name="Reasonforvisit" placeholder="Enter Reason For Visit"></td>
+              </tr>
+              <tr>
+                <td>Status:</td><td><input type="text" name="Status" placeholder="Enter Value"></td>
+              </tr>
+                </table>
+            <input type="submit" name="SearchBtn" value="Log Patient">
+          </div>
+          <div class="container">
+            <table>
+
+            <?php
+            if(isset($_POST['TRNSearch'])){
+              var_dump($_POST);
+                $TRN=$_POST['TRNSearch'];
+                if($TRN==""){
+                  $TRN=1;
+                }
+                $where=;
+
+                $SelQuery= "SELECT * FROM appointment WHERE PatientTRN=$TRN";
+                $result=mysqli_query($conn,$SelQuery);
+
+                while($rows= mysqli_fetch_assoc($result)){
+                  echo"<tr>
+                        <td>".$rows['PatientTRN']."</td>
+                        <td>".$rows['StaffID']."</td>
+                        <td>".$rows['Date']."</td>
+                        <td>".$rows['ReasonForVisit']."</td>
+                        <td>".$rows['Status']."</td>
+                        </tr>";
+
+                }
+                //close connection
+                mysqli_close($conn);
+              unset($_POST['TRNSearch']);
+            }
+            ?>
+          </table>
+          </div>
+
+          </form>
+        </body>
+</html>
