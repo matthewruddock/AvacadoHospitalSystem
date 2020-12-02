@@ -72,7 +72,7 @@ if(isset($_POST['mobilenumber'])){
       <tbody>
         
 <?php
-if(isset($_GET[editid]))
+if(isset($_GET["editid"]))
 {
 ?>       
         
@@ -81,15 +81,15 @@ if(isset($_GET[editid]))
 ?>
         <tr>
           <td>Address</td>
-          <td><textarea name="address" id="address" cols="45" required rows="5" ><?php echo $rsedit[address]; ?></textarea></td>
+          <td><textarea name="address" id="address" cols="45" required rows="5" ><?php echo $rsedit['address']; ?></textarea></td>
         </tr>
         <tr>
           <td>City</td>
-          <td><input type="text" name="pcity"  id="city"  value=" <?php echo $rsedit[city]; ?> "required /></td>
+          <td><input type="text" name="pcity"  id="city"  value=" <?php echo $rsedit['city']; ?> "required /></td>
         </tr>
 		<tr>
           <td>Country</td>
-          <td><input type="text" name="city" required id="city"   value="<?php echo $rsedit[Pcity]; ?> " /></td>
+          <td><input type="text" name="city" required id="city"   value="<?php echo $rsedit['city']; ?> " /></td>
         </tr>
 		
 		 <tr>

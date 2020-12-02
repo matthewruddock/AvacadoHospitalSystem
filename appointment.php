@@ -98,7 +98,7 @@
 					  min-height: 580px;
 
 					  /* Center and scale the image nicely */
-					  background-position: ;
+					  background-position: center;
 					  background-repeat: no-repeat;
 					  background-size: cover;
 					  position: relative;
@@ -214,15 +214,16 @@
 											<label for="uname"><b>Last name</b></label>
 											<input type="text" placeholder="Enter Lastname" title="No Space OR Numbers is allowed" name="lname" pattern="[a-zA-Z0-9]+" required></br>
 											
+											<label for = "reason_for_visit"><b>Reason for Visit</b></label>
+											<input type="text" placeholder="Enter Reason for Visit" name="reason_for_visit" pattern="[a-zA-Z0-9]+" required></br>
+											
 
 											<label for="psw"><b>Date</b></label>
 											<input type="date" placeholder="Enter date" name="date" required></br>
 											 <?php echo $err; ?>
 							
 											<button type="submit" class="loginbtn">Submit </button>
-											<label>
-											 
-											</label></br></br></br>
+											</br></br></br>
                          
 						                       </div>
                                        </form>

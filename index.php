@@ -1,15 +1,28 @@
+<?php
+  // Initialize the session
+  session_start();
+
+  require_once "DBInitalizer.php";
+
+  // Check if the user is already logged in, if yes then redirect him to welcome page
+  if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    //header("location: welcome.php");
+    //exit;
+  }
+?>
 <!DOCTYPE html>
-<?php session_start();
-$_SESSION["role"]="Doctor";
-if($_SESSION["role"]=="Guest"){
-$rowcol="w3-row w3-large w3-light-grey";
-$navClass="w3-col s3";
-$AClass="w3-button w3-block";
-}else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
-  $navClass="row";
-  $rowcol="col-md-8";
-  $AClass="col-md-2 cell";
-};
+<?php
+  $_SESSION["role"]="Admin";
+
+  if($_SESSION["role"]=="Guest"){
+    $rowcol="w3-row w3-large w3-light-grey";
+    $navClass="w3-col s3";
+    $AClass="w3-button w3-block";
+  }else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
+    $navClass="row";
+    $rowcol="col-md-8";
+    $AClass="col-md-2 cell";
+  };
 ?>
 <html>
 <title>Avacodo Hospital System</title>
@@ -26,7 +39,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 .w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
 </style>
 <style>
-.dropbtn {
+.dropbtn   {
   background-color: light gray;
   color: white;
   padding: 16px;
@@ -76,29 +89,44 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     <div class=<?php echo '"'.$navClass.'"';?>>
       <a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a>
     </div>
-    <?php if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
-    echo "  <div class= '$navClass'>
-        <a href='#' class='$AClass'>Edit Profile</a>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="BMI.php" class=<?php echo '"'.$AClass.'"';?>>BMI</a>
+    </div>
+    <?php
+     if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
+    echo "  <div class= '".$navClass."'>
+        <a href='editProfile.php' class='".$AClass."'>Edit Profile</a>
       </div>
-      <div class='$navClass'>
-         <a href='#' class='$AClass'>Login Patient</a>
+      <div class='".$navClass."'>
+         <a href='' class='".$AClass."'>Login Patient</a>
        </div>
-       <div class='$navClass'>
-          <a href='#' class='$AClass'>Register Patient</a>
+       <div class='".$navClass."'>
+          <a href='registerPatient.php' class='".$AClass."'>Register Patient</a>
         </div>
-        <div class='$navClass'>
-           <a href='#' class='$AClass'>Search Patient</a>
+        <div class='".$navClass."'>
+           <a href='searchPatient.php' class='$AClass'>Search Patient</a>
          </div>";
-    };?>
+
+
+
+    }
+
+    if($_SESSION["role"]=="Admin"){
+     echo " 
+        <div class= '".$navClass."'>
+           <a href='manageAccount.php' class='".$AClass."'>manageAccount</a>
+         </div>
+
+       ";
+    }?>
     <?php ?>
     <div class="w3-col s3">
 
 	  <div class="dropdown">
-	 <a> <button class="dropbtn"><img src="login.jfif" style="width:25%"></button></a>
+	 <a> <button class="dropbtn"><img src="imgs\login.png" style="width:25%"></button></a>
 	  <div class="dropdown-content">
-		<a href="doctorlogin.php">Doctor Login</a>
-		<a href="nurselogin.php">Nurse Login</a>
-		<a href="login.php">Admin Login</a>
+      <a href="loginStaff.php">Staff Login</a>
+      <a href="signupStaff.php">Staff Sign Up</a>
 	  </div>
 	</div>
       <a href="#contact" class="w3-button w3-block">Contact</a>
@@ -113,26 +141,26 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
   <br>
   <br>
   <div class="w3-panel">
-    <h1><b><img src="logo.png" style="width:20%">Avacodo Hospital System</b></h1>
+    <h1><b><img src="imgs/logo.png" style="width:20%">Avacodo Hospital System</b></h1>
     <p></p>
   </div>
 
   <!-- Slideshow -->
   <div class="w3-container">
     <div class="w3-display-container mySlides">
-      <img src="nursing.png" style="width:100%">
+      <img src="imgs/nursing.png" style="width:100%">
       <div class="w3-display-topleft w3-container w3-padding-32">
         <span class="w3-white w3-padding-large w3-animate-bottom">Welcome</span>
       </div>
     </div>
     <div class="w3-display-container mySlides">
-      <img src="Black-Nurse.jpg" style="width:100%">
+      <img src="imgs/Black-Nurse.jpg" style="width:100%">
       <div class="w3-display-middle w3-container w3-padding-32">
         <span class="w3-white w3-padding-large w3-animate-bottom">Welcome</span>
       </div>
     </div>
     <div class="w3-display-container mySlides">
-      <img src="nurse.jpg" style="width:100%">
+      <img src="imgs/nurse.jpg" style="width:100%">
       <div class="w3-display-topright w3-container w3-padding-32">
         <span class="w3-white w3-padding-large w3-animate-bottom">Welcome</span>
       </div>
@@ -250,7 +278,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
     <div class="w3-third w3-margin-bottom">
       <div class="w3-card-4">
-        <img src="logo.png" alt="Mike" style="width:40%">
+        <img src="imgs/logo.png" alt="Mike" style="width:40%">
         <div class="w3-container">
           <h4>Avacodo Medical Center </h4>
           <h3><p class="w3-opacity">Was Founded IN 1997.</p></h3>
@@ -266,7 +294,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
     <div class="w3-third w3-margin-bottom">
       <div class="w3-card-4">
-        <img src="news.png" alt="Jane" style="width:33%">
+        <img src="imgs/news.png" alt="Jane" style="width:33%">
         <div class="w3-container">
           <h3>News And Post</h3>
           <p class="w3-opacity"></p>
