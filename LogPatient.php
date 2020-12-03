@@ -1,7 +1,9 @@
 <?php
 session_start();
+var_dump($_POST);
 include_once "config.php";
-
+$updateSet=$TRNSearch=$Status=$Reasonforvisit="";
+$_SESSION['role']='Doctor';
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,45 +34,60 @@ include_once "config.php";
             </Select> </td>
               </tr>
                 </table';
+
+
               }
-              if($_SESSION['role']=='Nurse'){
-              echo '    <tr>
+              if($_SESSION['role']=='Doctor'){
+              echo ' <td>PatientTRN:</td> <td><input type="text" name="TRNSearch" placeholder="Enter TRN"></td>
+            </tr>
+
+            <tr>
+              <td>Status:</td><td><Select class="option" id="Title" name="Status" >
+              <option value="">--Please choose a Status--</option>
+              <option value="Pending" <?php if($Status=="Pending") echo"selected";?> Pending</option>
+              <option value="Complete" <?php if($Status=="Complete) echo"selected";?>Complete</option>
+              <option value="Cancelled" <?php if($Status=="Cancelled") echo"selected";?>Cancelled</option>
+          </Select> </td>
+            </tr>
+               <tr>
                 <td>Reason:</td> <td> <input type="text" name="Reasonforvisit" placeholder="Enter Reason For Visit"></td>
            </tr>';
+
+
+
             }
                 ?>
-            <input type="submit" name="SearchBtn" value="Log Patient">
+          <tr>
+            <td><input type="submit" name="SearchBtn" value="Log Patient"></td>
+          </tr>
+
           </div>
           <div class="container">
-            <table>
 
+            <table>
             <?php
             if(isset($_POST['SearchBtn'])){
               var_dump($_POST);
-                $TRN=$_POST['TRNSearch'];
-                if($TRN==""){
+
+                $TRNSearch=$_POST['TRNSearch'];
+                $Status=$_POST['Status'];
+                $updateSet="Status='".$Status."'";
+                if($_SESSION['role']=='Doctor'){
+                $Reasonforvisit= $_POST['Reasonforvisit'];
+                $updateSet="ReasonForVisit='".$Reasonforvisit."',Status='".$Status."'";
+              }
+                if($TRNSearch==""){
                   $TRN=1;
                 }
-                $where=;
 
-                $updateQuery="UPDATE appointment SET ReasonForVisit='$Reasonforvisit',Status='$status' WHERE StaffID='$ID'";
+
+                $updateQuery="UPDATE appointment SET $updateSet WHERE PatientTRN='$TRNSearch'";
                 mysqli_query($conn,$updateQuery);
-                $SelQuery= "SELECT * FROM appointment WHERE PatientTRN=$TRN";
-                $result=mysqli_query($conn,$SelQuery);
 
-                while($rows= mysqli_fetch_assoc($result)){
-                  echo"<tr>
-                        <td>".$rows['PatientTRN']."</td>
-                        <td>".$rows['StaffID']."</td>
-                        <td>".$rows['Date']."</td>
-                        <td>".$rows['ReasonForVisit']."</td>
-                        <td>".$rows['Status']."</td>
-                        </tr>";
-
-                }
                 //close connection
                 mysqli_close($conn);
-              unset($_POST['TRNSearch']);
+            unset($_POST['SearchBtn']);
+            var_dump($_POST);
             }
             ?>
           </table>
