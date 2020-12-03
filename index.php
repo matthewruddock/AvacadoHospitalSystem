@@ -12,84 +12,53 @@ $AClass="w3-button w3-block";
 };
 ?>
 <html>
+<head>
 <title>Avacodo Hospital System</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
+<link rel="stylesheet" type="text/css" href="amc_style.css">
+</head>
 
-html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
-.mySlides {display:none}
-.w3-tag, .fa {cursor:pointer}
-.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
-</style>
-<style>
-.dropbtn {
-  background-color: light gray;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+<body class="amc">
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-</style>
-<body>
 
 <!-- Links (sit on top) -->
 <div class="w3-top">
 
   <div class=<?php echo '"'.$rowcol.'"';?>>
+  <ul>
     <div class=<?php echo '"'.$navClass.'"';?>>
-      <a href="#" class=<?php echo '"'.$AClass.'"';?>>Home</a>
+	
+      <li><a href="#" class=<?php echo '"'.$AClass.'"';?>>Home</a></li>
     </div>
     <div class=<?php echo '"'.$navClass.'"';?>>
-      <a href="#plans" class=<?php echo '"'.$AClass.'"';?>>Appointments</a>
+      <li><a href="#plans" class=<?php echo '"'.$AClass.'"';?>>Appointments</a><li>
     </div>
     <div class=<?php echo '"'.$navClass.'"';?>>
-      <a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a>
+      <li><a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a></li>
     </div>
+	
     <?php if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
     echo "  <div class= '$navClass'>
-        <a href='#' class='$AClass'>Edit Profile</a>
+        <li><a href='#' class='$AClass'>Edit Profile</a></li>
       </div>
       <div class='$navClass'>
-         <a href='#' class='$AClass'>Login Patient</a>
+         <li><a href='#' class='$AClass'>Login Patient</a></li>
        </div>
        <div class='$navClass'>
-          <a href='#' class='$AClass'>Register Patient</a>
+          <li><a href='#' class='$AClass'>Register Patient</a></li>
         </div>
         <div class='$navClass'>
-           <a href='#' class='$AClass'>Search Patient</a>
+          <li><a href='#' class='$AClass'>Search Patient</a></li>
          </div>";
     };?>
+	<li><a href="#contact" class="w3-button w3-block" style = 'color:white'>Contact</a></li>
+	</ul>
     <?php ?>
     <div class="w3-col s3">
 
@@ -101,7 +70,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 		<a href="login.php">Admin Login</a>
 	  </div>
 	</div>
-      <a href="#contact" class="w3-button w3-block">Contact</a>
+      
 
     </div>
 
@@ -184,12 +153,12 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
   <!-- Grid -->
   <div class="w3-row-padding" id="plans">
     <br/> <br/><div class="w3-center w3-padding-64">
-      <h3>Appointments</h3>
-      <p>Make an appointments which suits you.</p>
+      <h3><b><u>Appointments</b></u></h3>
+      <p><strong>Make an appointments which suits you.</strong></p>
     </div>
 
-    <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+    <div class="w3-third w3-margin-bottom"> 
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow w3-white">
         <li class="w3-black w3-xlarge w3-padding-32">Dental Service</li>
         <li class="w3-padding-16"><b>Teeth</b> Cleaning </li>
         <li class="w3-padding-16"><b>Teeth</b> Filling</li>
@@ -207,7 +176,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     </div>
 
     <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow w3-white">
         <li class="w3-dark-grey w3-xlarge w3-padding-32">Doctor Consultation</li>
         <li class="w3-padding-16"><b>What To Expect</b></br></br> When you come to us, you will complete a patient medical history form that will help the surgeons understand your medical history and current concerns. It is possible that they will require some diagnostic studies, such as an ultra sound to help diagnose the extent of your venous disease. Once your doctor understands your medical needs, they will discuss and develop a plan of care specific to you. You will meet with our support staff that will assist you with insurance questions, financing and scheduling of your treatment.</li>
 
@@ -219,7 +188,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     </div>
 
     <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow w3-white">
         <li class="w3-black w3-xlarge w3-padding-32">MRI/X-RAY</li>
         <li class="w3-padding-16"><b>X-ray radiography</b>Detects bone fractures, certain tumors and other abnormal masses, pneumonia, some types of injuries, calcifications, foreign objects, dental problems. </li>
         <li class="w3-padding-16"><b>Mammography</b> A radiograph of the breast that is used for cancer detection and diagnosis.</li>
@@ -237,7 +206,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
   <!-- Grid -->
   <div class="w3-row-padding" id="about">
     <div class="w3-center w3-padding-64">
-     <br/> <br/> <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Who We Are</span>
+     <br/> <br/> <span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16"><strong>Who We Are</strong></span>
     </div>
 
     <div class="w3-third w3-margin-bottom">
@@ -248,7 +217,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
       </div>
     </div>
 
-    <div class="w3-third w3-margin-bottom">
+    <div class="w3-third w3-margin-bottom w3-dark-grey"> 
       <div class="w3-card-4">
         <img src="logo.png" alt="Mike" style="width:40%">
         <div class="w3-container">
@@ -264,7 +233,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
       </div>
     </div>
 
-    <div class="w3-third w3-margin-bottom">
+    <div class="w3-third w3-margin-bottom w3-grey">
       <div class="w3-card-4">
         <img src="news.png" alt="Jane" style="width:33%">
         <div class="w3-container">
@@ -280,7 +249,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 
   <!-- Contact -->
   <div class="w3-center w3-padding-64" id="contact">
-    <br/> <br/><span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Contact Us</span>
+    <br/> <br/><span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16"><b>Contact Us</b></span>
   </div>
 
   <form class="w3-container" action="/action_page.php" target="_blank">
