@@ -98,7 +98,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
         <a href='editProfile.php' class='".$AClass."'>Edit Profile</a>
       </div>
       <div class='".$navClass."'>
-         <a href='' class='".$AClass."'>Login Patient</a>
+         <a href='LogPatient.php' class='".$AClass."'>Login Patient</a>
        </div>
        <div class='".$navClass."'>
           <a href='registerPatient.php' class='".$AClass."'>Register Patient</a>
@@ -112,7 +112,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
     }
 
     if($_SESSION["role"]=="Admin"){
-     echo " 
+     echo "
         <div class= '".$navClass."'>
            <a href='manageAccount.php' class='".$AClass."'>manageAccount</a>
          </div>
