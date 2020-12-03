@@ -15,25 +15,37 @@ include_once "config.php";
           <form  method="POST">
             <br/><br/><br/><br/>
           <div class="container">
-            <h3>Search Appointment</h3>
+            <h3>Log patient</h3>
             <table>
               <tr>
-                <td>PatientTRN:</td> <td><input type="text" name="TRNSearch" placeholder="Enter TRN"></td>
-                </tr>
-                 <tr>
-                   <td>Reason:</td> <td> <input type="text" name="Reasonforvisit" placeholder="Enter Reason For Visit"></td>
+                <?php
+                if($_SESSION['role']=='Nurse'){
+                echo '<td>PatientTRN:</td> <td><input type="text" name="TRNSearch" placeholder="Enter TRN"></td>
               </tr>
+
               <tr>
-                <td>Status:</td><td><input type="text" name="Status" placeholder="Enter Value"></td>
+                <td>Status:</td><td><Select class="option" id="Title" name="Status" >
+                <option value="">--Please choose a Status--</option>
+                <option value="Pending" <?php if($Status=="Pending") echo"selected";?> >Pending</option>
+                <option value="Complete" <?php if($Status=="Complete) echo"selected";?>>Complete</option>
+                <option value="Cancel" <?php if($Status=="Cancel") echo"selected";?>>Cancel</option>
+            </Select> </td>
               </tr>
-                </table>
+                </table';
+              }
+              if($_SESSION['role']=='Nurse'){
+              echo '    <tr>
+                <td>Reason:</td> <td> <input type="text" name="Reasonforvisit" placeholder="Enter Reason For Visit"></td>
+           </tr>';
+            }
+                ?>
             <input type="submit" name="SearchBtn" value="Log Patient">
           </div>
           <div class="container">
             <table>
 
             <?php
-            if(isset($_POST['TRNSearch'])){
+            if(isset($_POST['SearchBtn'])){
               var_dump($_POST);
                 $TRN=$_POST['TRNSearch'];
                 if($TRN==""){
@@ -41,6 +53,8 @@ include_once "config.php";
                 }
                 $where=;
 
+                $updateQuery="UPDATE appointment SET ReasonForVisit='$Reasonforvisit',Status='$status' WHERE StaffID='$ID'";
+                mysqli_query($conn,$updateQuery);
                 $SelQuery= "SELECT * FROM appointment WHERE PatientTRN=$TRN";
                 $result=mysqli_query($conn,$SelQuery);
 
