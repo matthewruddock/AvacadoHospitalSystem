@@ -102,146 +102,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<!-- Add icon library -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<style>
-			* {box-sizing: border-box;}
-			body {
-				margin: 0;
-				font-family: Arial, Helvetica, sans-serif;
-			}
-
-			.header {
-				overflow: hidden;
-				background-color: #f1f1f1;
-				padding: 0px 10px;
-			}
-
-			.header a {
-			  	float: left;
-				color: black;
-				text-align: center;
-				padding: 12px;
-				text-decoration: none;
-				font-size: 12px;
-				line-height: 12px;
-				border-radius: 4px;
-			}
-
-			.header a.logo {
-				font-size: 20px;
-				font-weight: bold;
-			}
-
-			.header a:hover {
-				background-color: #ddd;
-				color: black;
-			}
-
-			.header a.active {
-				background-color: dodgerblue;
-				color: white;
-			}
-
-			.header-right {
-				float: right;
-			}
-
-			@media screen and (max-width: 500px) {
-				.header a {
-					float: none;
-					display: block;
-					text-align: left;
-				}
-
-				.header-right {
-					float: none;
-				}
-			}
-			.bg-img {
-			/* The image used */
-				background-image: url("imgs/nursing.png");
-				min-height: 580px;
-				/* Center and scale the image nicely */
-				background-repeat: no-repeat;
-				background-size: cover;
-				position: relative;
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="amc_style.css">
 
         <html>
        		<head>
           		<meta name="viewport" content="width=device-width, initial-scale=1">
-      			<style>
-						body {font-family: Arial, Helvetica, sans-serif;}
-						form {border: 3px solid black;  width: 30%; background-color: white;}
 
-						input[type=text], input[type=password] {
-						  width: 70%;
-						  padding: 12px 20px;
-						  margin: 8px 0;
-						  display: inline-block;
-						  border: 1px solid #ccc;
-						  box-sizing: border-box;
-						}
-
-						button {
-						  background-color: #4CAF50;
-						  color: white;
-						  padding: 14px 20px;
-						  margin: 8px 0;
-						  border: none;
-						  cursor: pointer;
-						  width: 20%;
-						}
-
-						button:hover {
-						  opacity: 0.8;
-						}
-
-						.cancelbtn {
-						  width: auto;
-						  padding: 10px 18px;
-						  background-color: #f44336;
-						}
-
-						.imgcontainer {
-						  text-align: center;
-						  margin: 24px 0 12px 0;
-						}
-
-						img.avatar {
-						  width: 40%;
-						  border-radius: 50%;
-						}
-
-						.container {
-						  padding: 1px;
-						}
-
-						span.psw {
-						  float: right;
-						  padding-top: 8px;
-						}
-
-						/* Change styles for span and cancel button on extra small screens */
-						@media screen and (max-width: 100px) {
-						  span.psw {
-							 display: block;
-							 float: none;
-						  }
-						  .cancelbtn {
-							 width: 50%;
-						  }
-						}
-           		</style>
             	<header>
 			    	<nav>
-							<div class="header"></br>
-								  <img src="imgs/logo.png" style="width:10%">
-							</div>
-
 							<div class="header">
+								  <img src="imgs/logo.png" style="width:5%">
+							</div></br>
 
-							</div>
+			
 							<div class="header">
 								<div class="header-right">
 									<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
@@ -251,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             	</header>
 
          	</head>
-     		<body>
+     		<body class="amc">
             	<div class="bg-img">
 					<main>	<br/>
                     	<div id="page-wrapper">
@@ -259,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<div align = "center">
 									<form method="POST" action=" ">
 										<div class="imgcontainer">
-											<img src="imgs/doctor.png" alt ="logo" style="width:100px">
+											<img src="imgs/avatar2.png" alt ="logo" style="width:100px"> 
 										</div>
 										<div>
 											<label for="email"><b>Email</b></label>
