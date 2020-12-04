@@ -1,8 +1,10 @@
 <?php
   // Initialize the session
   session_start();
+111
 
   require_once "DBInitalizer.php";
+
 
   // Check if the user is already logged in, if yes then redirect him to welcome page
   if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
@@ -12,13 +14,13 @@
 ?>
 <!DOCTYPE html>
 <?php
-  $_SESSION["role"]="Admin";
+  var_dump($_SESSION);
 
-  if($_SESSION["role"]=="Guest"){
+  if($_SESSION["type"]=="Guest"){
     $rowcol="w3-row w3-large w3-light-grey";
     $navClass="w3-col s3";
     $AClass="w3-button w3-block";
-  }else if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")||($_SESSION["role"]=="Admin")){
+  }else if(($_SESSION["type"]=="Doctor")||($_SESSION["type"]=="Nurse")||($_SESSION["type"]=="Admin")){
     $navClass="row";
     $rowcol="col-md-8";
     $AClass="col-md-2 cell";
@@ -53,7 +55,7 @@
       <a href="BMI.php" class=<?php echo '"'.$AClass.'"';?>>BMI</a>
     </div>
     <?php
-     if(($_SESSION["role"]=="Doctor")||($_SESSION["role"]=="Nurse")){
+     if(($_SESSION["type"]=="Doctor")||($_SESSION["type"]=="Nurse")){
     echo "  <div class= '".$navClass."'>
         <a href='editProfile.php' class='".$AClass."'>Edit Profile</a>
       </div>
@@ -71,7 +73,7 @@
 
     }
 
-    if($_SESSION["role"]=="Admin"){
+    if($_SESSION["type"]=="Admin"){
      echo "
         <div class= '".$navClass."'>
            <a href='manageAccount.php' class='".$AClass."'>manageAccount</a>
@@ -83,8 +85,13 @@
     <div class="w3-col s3">
 
 	  <div class="dropdown">
-	 <a> <button class="dropbtn"><img src="imgs\login.png" style="width:25%"></button></a>
-	  <div class="dropdown-content">
+      <?php If($_SESSION["type"]='Guest'){
+	       echo "<a> <button class='dropbtn'><img src='imgs\login.png' style='width:25%'></button></a>";
+      }else{
+        echo "<a href='logout.php'>Log out </a>";
+          }
+        ?>
+    <div class="dropdown-content">
       <a href="loginStaff.php">Staff Login</a>
       <a href="signupStaff.php">Staff Sign Up</a>
 	  </div>
