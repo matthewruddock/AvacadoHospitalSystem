@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "config.php";
-$_SESSION['StaffID']='AM002';
+
 $name=$email=$nameerr=$emailerr="";
 foreach($_SESSION as $key => $value)	//store SESSION values in to local variables
 {
