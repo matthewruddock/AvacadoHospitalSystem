@@ -1,7 +1,6 @@
 <?php
   // Initialize the session
   session_start();
-111
 
   require_once "DBInitalizer.php";
 
@@ -85,16 +84,18 @@
     <div class="w3-col s3">
 
 	  <div class="dropdown">
-      <?php If($_SESSION["type"]='Guest'){
-	       echo "<a> <button class='dropbtn'><img src='imgs\login.png' style='width:25%'></button></a>";
+      <?php If($_SESSION["type"]=='Guest'){
+	       echo "<a> <button class='dropbtn'><img src='imgs\login.png' style='width:25%'></button></a>
+         <div class='dropdown-content'>
+           <a href='loginStaff.php'>Staff Login</a>
+           <a href='signupStaff.php'>Staff Sign Up</a>
+         </div>
+              ";
       }else{
         echo "<a href='logout.php'>Log out </a>";
           }
         ?>
-    <div class="dropdown-content">
-      <a href="loginStaff.php">Staff Login</a>
-      <a href="signupStaff.php">Staff Sign Up</a>
-	  </div>
+
 	</div>
       <a href="#contact" class="w3-button w3-block">Contact</a>
 
