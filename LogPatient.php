@@ -3,7 +3,7 @@ session_start();
 var_dump($_POST);
 include_once "config.php";
 $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
-$_SESSION['role']='Doctor';
+$_SESSION["type"]='Doctor';
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@ $_SESSION['role']='Doctor';
             <table>
               <tr>
                 <?php
-                if($_SESSION['role']=='Nurse'){
+                if($_SESSION["type"]=='Nurse'){
                 echo '<td>PatientTRN:</td> <td><input type="text" name="TRNSearch" placeholder="Enter TRN"></td>
               </tr>
 
@@ -37,7 +37,7 @@ $_SESSION['role']='Doctor';
 
 
               }
-              if($_SESSION['role']=='Doctor'){
+              if($_SESSION["type"]=='Doctor'){
               echo ' <td>PatientTRN:</td> <td><input type="text" name="TRNSearch" placeholder="Enter TRN"></td>
             </tr>
 
@@ -72,7 +72,7 @@ $_SESSION['role']='Doctor';
                 $TRNSearch=$_POST['TRNSearch'];
                 $Status=$_POST['Status'];
                 $updateSet="Status='".$Status."'";
-                if($_SESSION['role']=='Doctor'){
+                if($_SESSION["type"]=='Doctor'){
                 $Reasonforvisit= $_POST['Reasonforvisit'];
                 $updateSet="ReasonForVisit='".$Reasonforvisit."',Status='".$Status."'";
               }
