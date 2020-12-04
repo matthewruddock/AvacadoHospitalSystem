@@ -31,7 +31,9 @@
                         <?php
                             $select_query="SELECT * FROM Staff ORDER BY StaffID desc;";
                             $result = mysqli_query($conn,$select_query);
-                            while($row = mysqli_fetch_assoc($result)) { ?>
+                            $count=0;
+                            while($row = mysqli_fetch_assoc($result)) {
+                              $count++; ?>
                             <tr><td align="center"><?php echo $count; ?></td>
                                 <td align="center"><?php echo $row["StaffID"]; ?></td>
                                 <td align="center"><?php echo $row["Name"]; ?></td>
