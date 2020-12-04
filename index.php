@@ -13,7 +13,7 @@
 ?>
 <!DOCTYPE html>
 <?php
-  var_dump($_SESSION);
+
 
   if($_SESSION["type"]=="Guest"){
     $rowcol="w3-row w3-large w3-light-grey";

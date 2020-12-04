@@ -3,7 +3,7 @@ session_start();
 var_dump($_POST);
 include_once "config.php";
 $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
-$_SESSION["type"]='Doctor';
+
 ?>
 <!DOCTYPE html>
 <html>
