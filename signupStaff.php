@@ -1,6 +1,6 @@
 <?php
 // Include config file
-
+session_start();
 include_once "config.php";
 if(isset($_SESSION['resultFlag']))
 {
@@ -9,6 +9,10 @@ if(isset($_SESSION['resultFlag']))
 		$$key = $value;
 	}
 	session_destroy();		//destroys the session once the values are loaded. REFRESH to clear the fields
+	session_start();
+	$_SESSION['type']=$type;
+	$_SESSION['staffId'] = $staffId;
+	$_SESSION['staffName'] = $staffName;
 }
 else{
 	// Define variables and initialize with empty values
@@ -16,29 +20,29 @@ else{
 	$email_err = $pwd_err = $pwd_repeat_err  = $type_err = $staffId_err = $staffName_err="";
 }
 
- 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+
     // Validate email
     if(empty(trim($_POST["email"]))){
         $email_err = "Please enter a Email.";
     } else{
         // Prepare a select statement
         $sql = "SELECT Email FROM Staff WHERE Email = ?";
-        
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_email);
-            
+
             // Set parameters
             $param_email = trim($_POST["email"]);
-            
+
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 /* store result */
                 mysqli_stmt_store_result($stmt);
-                
+
                 if(mysqli_stmt_num_rows($stmt) == 1){
                     $email_err = "<p style='color:red; font-weight:bold'>This email is already taken.";
                 } else{
@@ -60,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $staffId = trim($_POST["staffId"]);
 	}
-	
+
 	// Validate Staff Name
     if(empty(trim($_POST["staffName"]))){
         $staffName_err = "Please enter a Staff Name.";
@@ -72,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate type
     if (empty($_POST["type"])) {
         $type_err= "<p style='color:red; font-weight:bold'>Gender is required";
-  
+
     }else {
         $type = trim($_POST["type"]);
         // check if user selected male or female
@@ -83,16 +87,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate password
     if(empty(trim($_POST["pwd"]))){
-        $pwd_err = "Please enter a password.";     
+        $pwd_err = "Please enter a password.";
     } elseif(strlen(trim($_POST["pwd"])) < 6){
         $pwd_err = "<p style='color:red; font-weight:bold'>Password must have atleast 6 characters.";
     } else{
         $pwd = trim($_POST["pwd"]);
     }
-    
+
     // Validate confirm password
     if(empty(trim($_POST["pwd_err"]))){
-        $pwd_err_err = "<p style='color:red; font-weight:bold'>Please confirm password.";     
+        $pwd_err_err = "<p style='color:red; font-weight:bold'>Please confirm password.";
     } else{
         $pwd_err = trim($_POST["pwd_err"]);
         if(empty($pwd_err) && ($pwd != $pwd_err)){
@@ -102,14 +106,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     var_dump($_POST);
     // Check input errors before inserting in database
     if(empty($email_err) && empty($pwd_err)  && empty($staffName_err)   && empty($staffId_err) && empty($pwd_repeat)){
-        
+
         // Prepare an insert statement
         $sql = "INSERT INTO Staff (StaffID, Name, Email, Password, Type) VALUES (?, ?, ?, ?,?)";
-         
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
-            
+
 			// Set parameters
 			$param_staffId = $staffId;
 			$param_staffName = $staffName;
@@ -128,7 +132,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
-    
+
     // Close connection
     mysqli_close($conn);
 }
@@ -143,14 +147,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <header>
 			<nav>
             	<div class="header"></br>
-                	<img src="imgs/logo.png" alt ="logo" style="width:5%"> 
+                	<img src="imgs/logo.png" alt ="logo" style="width:5%">
                 </div>
 
 					<div class="header-right">
                         <a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
                     </div>
 			</nav>
-		</header>	      
+		</header>
 		</br>
 		<body class="amc">
             <main>
@@ -163,11 +167,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								</div>
 								<div style = "margin:0px">
                                 	<div class="bg-img">
-								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
+								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 											<div class="container">
 												<h1>Staff Sign Up</></h1>
 												<p><font color="red">Please fill in this form to create an account.</font></p>
-												
+
                                                 <div <?php echo (!empty($staffId_err)) ? 'has-error' : ''; ?>">
                                                     <label>Staff ID:</label> </br>
                                                     <input type="text" placeholder="Enter Staff ID" name="staffId"></br>
@@ -217,19 +221,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 													<button type="submit" class="signupbtn">Sign Up</button>
 												</div>
 												<p>Already have an account? <a href="loginStaff.php">Login here</a>.</p>
-										    </div>          
+										    </div>
 								  		</form>
 									</div>
 								</div>
 							</div>
 						</div>
-					</section> 
-	            </div>                                                                              
+					</section>
+	            </div>
         	</main>
 		</body>
 </html>
 
-<?php 
+<?php
  require "footer.php";
 
 ?>

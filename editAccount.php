@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 // Include config file
 
 include_once "config.php";
@@ -9,6 +11,10 @@ if(isset($_SESSION['resultFlag']))
 		$$key = $value;
 	}
 	session_destroy();		//destroys the session once the values are loaded. REFRESH to clear the fields
+	session_start();
+	$_SESSION['type']=$type;
+	$_SESSION['staffId'] = $staffId;
+	$_SESSION['staffName'] = $staffName;
 }
 else{
 	// Define variables and initialize with empty values
@@ -16,17 +22,17 @@ else{
 	$email_err = $pwd_err = $pwd_repeat_err  = $type_err = $staffId_err = $staffName_err="";
 }
 
- 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+
     // Validate email
     if(empty(trim($_POST["email"]))){
         $email_err = "Please enter a Email.";
-    } 
+    }
     // Assign Staff ID
     $staffId = trim( $_REQUEST['StaffID'] );
-	
+
 	// Validate Staff Name
     if(empty(trim($_POST["staffName"]))){
         $staffName_err = "Please enter a Staff Name.";
@@ -38,7 +44,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate type
     if (empty($_POST["type"])) {
         $type_err= "<p style='color:red; font-weight:bold'>Gender is required";
-  
+
     }else {
         $type = trim($_POST["type"]);
         // check if user selected male or female
@@ -49,16 +55,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Validate password
     if(empty(trim($_POST["pwd"]))){
-        $pwd_err = "Please enter a password.";     
+        $pwd_err = "Please enter a password.";
     } elseif(strlen(trim($_POST["pwd"])) < 6){
         $pwd_err = "<p style='color:red; font-weight:bold'>Password must have atleast 6 characters.";
     } else{
         $pwd = trim($_POST["pwd"]);
     }
-    
+
     // Validate confirm password
     if(empty(trim($_POST["pwd_err"]))){
-        $pwd_err_err = "<p style='color:red; font-weight:bold'>Please confirm password.";     
+        $pwd_err_err = "<p style='color:red; font-weight:bold'>Please confirm password.";
     } else{
         $pwd_err = trim($_POST["pwd_err"]);
         if(empty($pwd_err) && ($pwd != $pwd_err)){
@@ -68,14 +74,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     var_dump($_POST);
     // Check input errors before inserting in database
     if(empty($email_err) && empty($pwd_err)  && empty($staffName_err)   && empty($staffId_err) && empty($pwd_repeat)){
-        
+
         // Prepare an insert statement
         $sql = "UPDATE Staff SET (StaffID, Name, Email, Password, Type) VALUES (?, ?, ?, ?,?) WHERE StaffID= '".$StaffID."' ";
-         
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sssss", $param_staffId, $param_staffName, $param_email, $param_pwd, $param_type);
-            
+
 			// Set parameters
 			$param_staffId = $staffId;
 			$param_staffName = $staffName;
@@ -94,7 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
-    
+
     // Close connection
     mysqli_close($conn);
 }
@@ -108,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <style>
 			* {box-sizing: border-box;}
 
-			body { 
+			body {
 				margin: 0;
 				font-family: Arial, Helvetica, sans-serif;
 			}
@@ -125,7 +131,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				text-align: center;
 				padding: 12px;
 				text-decoration: none;
-				font-size: 12px; 
+				font-size: 12px;
 				line-height: 12px;
 				border-radius: 4px;
 			}
@@ -155,7 +161,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					display: block;
 					text-align: left;
 				}
-					  
+
 				.header-right {
 					float: none;
 				}
@@ -243,7 +249,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				border: 1px solid #f1f1f1;
 				margin-bottom: 25px;
 			}
-							 
+
 			/* The Close Button (x) */
 			.close {
 				position: absolute;
@@ -271,7 +277,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				.cancelbtn, .signupbtn {
 					width: 100%;
 				}
-							  
+
 			}
         </style>
         <style>
@@ -291,7 +297,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <header>
 			<nav>
             	<div class="header"></br>
-                	<img src="imgs/logo.png" alt ="logo" style="width:10%"> 
+                	<img src="imgs/logo.png" alt ="logo" style="width:10%">
                 </div>
 
                 <div class="header">
@@ -304,7 +310,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <a href="viewAccount.php"> <i class="glyphicon glyphicon-home"></i>VIEW ACCOUNT</a>
                     </div>
 			</nav>
-		</header>	      
+		</header>
 		</br>
 		<body>
             <main>
@@ -317,7 +323,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								</div>
 								<div style = "margin:0px">
                                 	<div class="bg-img">
-								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
+								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 											<div class="container">
 												<h1>Edit Account</></h1>
 												<p><font color="yellow">Please fill in this form to Edit an account.</font></p>
@@ -365,20 +371,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 													<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
 													<button type="submit" class="signupbtn">Update</button>
 												</div>
-												
-										    </div>          
+
+										    </div>
 								  		</form>
 									</div>
 								</div>
 							</div>
 						</div>
-					</section> 
-	            </div>                                                                              
+					</section>
+	            </div>
         	</main>
 		</body>
 </html>
 
-<?php 
+<?php
  require "footer.php";
 
 ?>

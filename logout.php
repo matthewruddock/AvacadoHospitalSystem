@@ -1,13 +1,15 @@
 <?php
   // Initialize the session
   session_start();
- 
+
   // Unset all of the session variables
   $_SESSION = array();
-  
+
   // Destroy the session.
   session_destroy();
-
+  // Initialize the session
+  session_start();
+  $_SESSION['type']="Guest";
    //Redirect to login page
   //header("location: login.php");
   //exit;
@@ -15,7 +17,7 @@
 <style>
   * {box-sizing: border-box;}
 
-  body { 
+  body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
   }
@@ -32,7 +34,7 @@
     text-align: center;
     padding: 12px;
     text-decoration: none;
-    font-size: 12px; 
+    font-size: 12px;
     line-height: 12px;
     border-radius: 4px;
   }
@@ -62,7 +64,7 @@
       display: block;
       text-align: left;
     }
-    
+
     .header-right {
       float: none;
 
@@ -73,12 +75,12 @@
 
 <body>
   <div class="header">
-    <img src="imgs/jlogo.jpg" alt ="logo" style="width:50px"> 
+    <img src="imgs/jlogo.jpg" alt ="logo" style="width:50px">
     <div class="header-right">
-      <a class="active" href="login.php">LOG BACK IN</a> 
+      <a class="active" href="loginStaff.php">LOG BACK IN</a>
     </div>
   </div>
-   
+
   <center > <p> You Are Logged out! </p>  </center >
   <?php
     date_default_timezone_set("America/New_York");

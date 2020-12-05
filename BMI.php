@@ -1,9 +1,9 @@
 <!doctype=html>
 <html>
-<head>
-<title> BMI Calculator</title>
-<link rel="stylesheet" type="text/css" href = "bmicalc.css" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<head>
+		<title> BMI Calculator</title>
+		<link rel="stylesheet" type="text/css" href = "bmicalc.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 			<!-- Add icon library -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 			<style>
@@ -77,22 +77,39 @@
 					  position: relative;
 					}
              </style>
-</head>
- <div class="bg-img">
-<body>
-</br>
-<a href="index.php" class="w3-button w3-block">Home</a>
-<center><h2> BMI Calculator </h2></center>
-<div id="bmiform">
-<b>Please enter your measurements below. </b> <br /><br />
-<form id="bmicalc" name="bmicalc" method="post">
-Weight (in kg): <input type="text" name="weight"> <br /><br />
-Height (in Meters): <input type="text" name="height"><br /><br />
-<input type="submit" name="givems" id="givems" class="btn" value="Submit"/>
-</div>
-</form>
-</div>
-</body>
+	</head>
+ 		<div class="bg-img">
+			<body>
+			</br>
+				<a href="index.php" class="w3-button w3-block">Home</a>
+					<center><h2> BMI Calculator </h2></center>
+				<div id="bmiform">
+					<b>Please enter your measurements below. </b> <br /><br />
+					<form id="bmicalc" name="bmicalc" method="post">
+						Weight (in kg): <input type="number" name="weight" min="0" max="500" <br /><br />
+						Height (in Meters): <input type="number" name="height" min="0" max="2.5"><br /><br />
+						Result : <input type="text" name="result" value = 0><br /><br />
+						<input type="submit" name="givems" id="givems" class="btn" value="Submit"/>
+					</form>		
+				</div>	
+			</body>
+		</div>
+	<!-- Footer -->
+
+	<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+	<h4>Footer</h4>
+	<a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+	<div class="w3-xlarge w3-section">
+		<i class="fa fa-facebook-official w3-hover-opacity"></i>
+		<i class="fa fa-instagram w3-hover-opacity"></i>
+		<i class="fa fa-snapchat w3-hover-opacity"></i>
+		<i class="fa fa-pinterest-p w3-hover-opacity"></i>
+		<i class="fa fa-twitter w3-hover-opacity"></i>
+		<i class="fa fa-linkedin w3-hover-opacity"></i>
+	</div>
+
+	<p>Powered by <a href="Rover.html" title="W3.CSS" target="_blank" class="w3-hover-text-green">Rover</a></p>
+	</footer>
 </html>
 
 <?php
@@ -120,7 +137,7 @@ $width=0;
 			//Check that value is in right range.
 			if ($height<0 || $height>2.5)
 			{
-			    print "Height must be value between 0 and 7.5<br />";
+			    print "Height must be value between 0m and 2.5m<br />";
 			    print "<a href='BMI.php'>try again</A>";
 			    exit;
 			}
@@ -139,7 +156,7 @@ $width=0;
 			//Check that value is in right range.
 			if ($weight<0 || $weight>500)
 			{
-			    print "Weight must be value between 0 and 500<br />";
+			    print "Weight must be value between 0kg and 500kg<br />";
 			    print "<a href='BMI.php'>try again</A>";
 			    exit;
 			}
