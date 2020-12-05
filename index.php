@@ -10,6 +10,11 @@
     //header("location: welcome.php");
     //exit;
   }
+  if(!isset($_SESSION['type'])){
+    $_SESSION['type']='Guest';
+  }
+session_destroy();
+
 ?>
 <!DOCTYPE html>
 <?php
@@ -104,6 +109,7 @@
 </div>
 
 <!-- Content -->
+
 <div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
   <br>
   <br>
@@ -157,7 +163,6 @@
       <p> <a href="BMI.php"> Calculate Body Mass Index Here</a></p>
 
     </div>
-
 
 
     <div class="w3-col l3 m6 w3-grey w3-container w3-padding-16">
