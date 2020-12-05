@@ -236,35 +236,35 @@ li a {
 }
 
 /*Change the link color to #111 (black) on hover*/
-/* li a:hover { */
-    /* background-color: rgb(153, 153, 102); */
-/* } */
+li a:hover {
+    background-color: rgb(153, 153, 102);
+}
 
-/* .active { */
-    /* background-color: rgb(100,120,60); */
-	/* border: 1px solid gray; */
-/* }  */
+.active {
+    background-color: rgb(100,120,60);
+	border: 1px solid gray;
+} 
 
-/* .dropdown */
-/* { */
-	/* position: relative; */
-	/* display: inline-block; */
-/* } */
+.dropdown
+{
+	position: relative;
+	display: inline-block;
+}
 
-/* .dropdown-content */
-/* { */
-	/* display: none; */
-	/* position: absolute; */
-	/* min-width: 160 px; */
-	/* box-shadow: 0px 8px; */
-	/* padding: 12px 16px; */
-	/* z-index: 1; */
-/* } */
+.dropdown-content
+{
+	display: none;
+	position: absolute;
+	min-width: 160 px;
+	box-shadow: 0px 8px;
+	padding: 12px 16px;
+	z-index: 1;
+}
 
-/* .dropdown:hover .dropdown-content */
-/* { */
-	/* display: block; */
-/* } */
+.dropdown:hover .dropdown-content
+{
+	display: block;
+}
 
 html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 .mySlides {display:none}
@@ -537,9 +537,9 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 			}
 
 			/* Add padding to container elements */
-			.container {
-				padding: 16px;
-			}
+			/* .container { */
+				/* padding: 16px; */
+			/* } */
 
 			/* The Modal (background) */
 			.modal {
@@ -599,7 +599,7 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
 							  
 			}
 			
-						.bg-img {
+				.bg-img {
 				/* The image used */
 				background-image: url("imgs/form_background.jpg");
 				min-height: 580px;
