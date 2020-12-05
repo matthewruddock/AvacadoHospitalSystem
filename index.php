@@ -13,7 +13,7 @@
   if(!isset($_SESSION['type'])){
     $_SESSION['type']='Guest';
   }
-session_destroy();
+
 
 ?>
 <!DOCTYPE html>
