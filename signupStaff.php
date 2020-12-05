@@ -162,9 +162,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	            	<section id="region-main" class="col-12">
 						<div align = "center">
 							<div style = "width:410px; border: solid 1px #333333; " align = "left">
-								<div style = "background-color:#333333; color:#FFFFFF; padding:0px;">
-									<b></b>
-								</div>
 								<div style = "margin:0px">
                                 	<div class="bg-img">
 								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">

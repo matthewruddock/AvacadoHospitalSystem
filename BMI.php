@@ -6,6 +6,54 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 			<!-- Add icon library -->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+<style>
+.dropbtn {
+  background-color: light gray;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
 			<style>
 					* {box-sizing: border-box;}
 
@@ -66,7 +114,7 @@
 						<style>
 					   .bg-img {
 					  /* The image used */
-					  background-image: url("bmii.jpg");
+					  background-image: url("imgs/bmii.jpg");
 
 					  min-height: 580px;
 
@@ -88,31 +136,9 @@
 					<form id="bmicalc" name="bmicalc" method="post">
 						Weight (in kg): <input type="number" name="weight" min="0" max="500" <br /><br />
 						Height (in Meters): <input type="number" name="height" min="0" max="2.5"><br /><br />
-						Result : <input type="text" name="result" value = 0><br /><br />
+						
 						<input type="submit" name="givems" id="givems" class="btn" value="Submit"/>
-					</form>		
-				</div>	
-			</body>
-		</div>
-	<!-- Footer -->
-
-	<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
-	<h4>Footer</h4>
-	<a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-	<div class="w3-xlarge w3-section">
-		<i class="fa fa-facebook-official w3-hover-opacity"></i>
-		<i class="fa fa-instagram w3-hover-opacity"></i>
-		<i class="fa fa-snapchat w3-hover-opacity"></i>
-		<i class="fa fa-pinterest-p w3-hover-opacity"></i>
-		<i class="fa fa-twitter w3-hover-opacity"></i>
-		<i class="fa fa-linkedin w3-hover-opacity"></i>
-	</div>
-
-	<p>Powered by <a href="Rover.html" title="W3.CSS" target="_blank" class="w3-hover-text-green">Rover</a></p>
-	</footer>
-</html>
-
-<?php
+						<?php
 //Define variables and give initial values.
 $height=0;
 $width=0;
@@ -168,3 +194,26 @@ $width=0;
 			print("Body mass index is $bmi");
 }
 ?>
+					</form>		
+				</div>	
+			</body>
+		</div>
+	
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <h4>Footer</h4>
+  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+
+  <p>Powered by <a href="Rover.html" title="W3.CSS" target="_blank" class="w3-hover-text-green">Rover</a></p>
+</footer>
+
+

@@ -32,41 +32,81 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="amc_style.css">
+<style>
 
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+<style>
+.dropbtn {
+  background-color: light gray;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
 <body class="amc">
 
 <!-- Links (sit on top) -->
 
 <div class="w3-top">
-    
+
   <div class=<?php echo '"'.$rowcol.'"';?>>
     <div class=<?php echo '"'.$navClass.'"';?>>
-	<ul>
-      <li><a href="#" class=<?php echo '"'.$AClass.'"';?>>Home</a></li>
-   
-   
-      <li><a href="#plans" class=<?php echo '"'.$AClass.'"';?>>Appointments</a></li>
-    
- 
-      <li><a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a></li>
-    
-
-      <li><a href="BMI.php" class=<?php echo '"'.$AClass.'"';?>>BMI</a></li>
+      <a href="#" class=<?php echo '"'.$AClass.'"';?>>Home</a>
+    </div>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="#plans" class=<?php echo '"'.$AClass.'"';?>>Appointments</a>
+    </div>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="#about" class=<?php echo '"'.$AClass.'"';?>>About</a>
+    </div>
+    <div class=<?php echo '"'.$navClass.'"';?>>
+      <a href="BMI.php" class=<?php echo '"'.$AClass.'"';?>>BMI</a>
     </div>
     <?php
      if(($_SESSION["type"]=="Doctor")||($_SESSION["type"]=="Nurse")){
     echo "  <div class= '".$navClass."'>
-        <li><a href='editProfile.php' class='".$AClass."'>Edit Profile</a></li>
+        <a href='editProfile.php' class='".$AClass."'>Edit Profile</a>
       </div>
       <div class='".$navClass."'>
-         <li><a href='LogPatient.php' class='".$AClass."'>Login Patient</a></li>
+         <a href='LogPatient.php' class='".$AClass."'>Login Patient</a>
        </div>
        <div class='".$navClass."'>
-          <li><a href='registerPatient.php' class='".$AClass."'>Register Patient</a></li>
+          <a href='registerPatient.php' class='".$AClass."'>Register Patient</a>
         </div>
         <div class='".$navClass."'>
-           <li><a href='searchPatient.php' class='$AClass'>Search Patient</a></li>
+           <a href='searchPatient.php' class='$AClass'>Search Patient</a>
          </div>";
 
 
@@ -86,7 +126,7 @@
 
 	  <div class="dropdown">
       <?php If($_SESSION["type"]=='Guest'){
-	       echo "<a> <button class='dropbtn'><img src='imgs\login.png' style='width:25%'></button></a>
+	       echo "<a> <button class='dropbtn'><img src='imgs\login.png' style='width:55%'></button></a>
          <div class='dropdown-content'>
            <a href='loginStaff.php'>Staff Login</a>
            <a href='signupStaff.php'>Staff Sign Up</a>
@@ -101,7 +141,7 @@
       <a href="#contact" class="w3-button w3-block">Contact</a>
 
     </div>
-</ul>
+
   </div>
 </div>
 
@@ -181,7 +221,7 @@
   <!-- Grid -->
   <div class="w3-row-padding" id="plans">
     <br/> <br/><div class="w3-center w3-padding-64">
-      <h3><b>Appointments</b></h3>
+      <p style="color:white"><h3><b>Appointments</b></h3></p>
       <p><b>Make an appointments which suits you.</b></p>
     </div>
 
@@ -216,7 +256,7 @@
     </div>
 
     <div class="w3-third w3-margin-bottom">
-      <ul class="w3-ul w3-border w3-center w3-hover-shadow w3-white">
+      <ul class="w3-ul w3-border w3-center w3-hover-shadow">
         <li class="w3-black w3-xlarge w3-padding-32">MRI/X-RAY</li>
         <li class="w3-padding-16"><b>X-ray radiography</b>Detects bone fractures, certain tumors and other abnormal masses, pneumonia, some types of injuries, calcifications, foreign objects, dental problems. </li>
         <li class="w3-padding-16"><b>Mammography</b> A radiograph of the breast that is used for cancer detection and diagnosis.</li>
@@ -245,12 +285,12 @@
       </div>
     </div>
 
-    <div class="w3-third w3-margin-bottom w3-white">
+    <div class="w3-third w3-margin-bottom">
       <div class="w3-card-4">
         <img src="imgs/logo.png" alt="Mike" style="width:40%">
-        <div class="w3-container w3-white">
+        <div class="w3-container">
           <h4>Avacodo Medical Center </h4>
-          <h3><p class="w3-opacity">Was Founded IN 1997.</p></h3>
+           <p style="color:blue"> <h3><p class="w3-opacity">Was Founded IN 1997.</p></h3>
           <p></bold>Mission:</bold>
              To serve our patients and the community in a way that is second to none </p>
 
@@ -261,10 +301,10 @@
       </div>
     </div>
 
-    <div class="w3-third w3-margin-bottom w3-white">
+    <div class="w3-third w3-margin-bottom">
       <div class="w3-card-4">
         <img src="imgs/news.png" alt="Jane" style="width:33%">
-        <div class="w3-container w3-white">
+        <div class="w3-container">
           <h3>News And Post</h3>
           <p class="w3-opacity"></p>
           <p>Due To Covid-19 Mask must be worn at all times at our locations. </p>
@@ -277,7 +317,7 @@
 
   <!-- Contact -->
   <div class="w3-center w3-padding-64" id="contact">
-    <br/> <br/><span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16"><strong>Contact Us</strong></span>
+    <br/> <br/><span class="w3-xlarge w3-bottombar w3-border-dark-grey w3-padding-16">Contact Us</span>
   </div>
 
   <form class="w3-container" action="/action_page.php" target="_blank">

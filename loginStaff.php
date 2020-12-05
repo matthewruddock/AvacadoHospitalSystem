@@ -259,7 +259,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								<div align = "center">
 									<form method="POST" action=" ">
 										<div class="imgcontainer">
-											<img src="imgs/doctor.png" alt ="logo" style="width:100px">
+											<img src="imgs/davatar.JPG" alt ="logo" style="width:100px">
 										</div>
 										<div>
 											<label for="email"><b>Email</b></label>
