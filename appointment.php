@@ -1,4 +1,5 @@
-   <?php 
+   <?php
+   include_once "config.php";
    session_start();
    if(isset($_SESSION['errflag']))
 	{
@@ -10,8 +11,8 @@
 	}
 	else
 	{
-		
-		
+
+
 
 		// default error message
 		$fnerr = "";
@@ -23,12 +24,20 @@
 		$doberr = "";
 		$imgerr = "";
 		$err = " ";
-		session_destroy();
+    $TRN="";
+
 	}
-   
+  session_destroy();
+  session_start();
+if(isset($_SESSION['staffId'])){
+  $_SESSION['type']=$type;
+  $_SESSION['staffId'] = $staffId;
+  $_SESSION['staffName'] = $staffName;}
+  else
+    $_SESSION['type']=$type;
    ?>
-  
-   
+
+
    <!DOCTYPE html>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 			<!-- Add icon library -->
@@ -36,7 +45,7 @@
 			<style>
 					* {box-sizing: border-box;}
 
-					body { 
+					body {
 					  margin: 0;
 					  font-family: Arial, Helvetica, sans-serif;
 					}
@@ -53,7 +62,7 @@
 					  text-align: center;
 					  padding: 12px;
 					  text-decoration: none;
-					  font-size: 12px; 
+					  font-size: 12px;
 					  line-height: 12px;
 					  border-radius: 4px;
 					}
@@ -83,11 +92,11 @@
 						display: block;
 						text-align: left;
 					  }
-					  
+
 					  .header-right {
 						float: none;
 					  }
-					  
+
 					}
 					   </style>
 						<style>
@@ -106,7 +115,7 @@
              </style>
           <html>
        <head>
-	   
+
           <meta name="viewport" content="width=device-width, initial-scale=1">
       <style>
 						body {font-family: Arial, Helvetica, sans-serif;}
@@ -182,56 +191,76 @@
 								  </div>
 								  <div class="header">
 
-		  
+
 								 <div class="header-right">
 								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
-								
-								 
+
+
                                 </div>
 				 </nav>
-	         
+
           </head>
-              
+
      <body>
                        <div class="bg-img">
-                       
-			<main>	<br/>	   
+
+			<main>	<br/>
                     <div id="page-wrapper">
- 
+
 	                 <section id="region-main" class="col-12">
 
 							   <div align = "center">
-							   
-								 <form method="POST" > 
+
+								 <form method="POST" >
 										 <div class="imgcontainer">
-										
+
 										  </div>
                                            <label>Make An Appointment</label></br>
-										   
-											<label for="uname"><b>First name</b></label>
+
+                      <label for="uname"><b>TRN</b></label>
+    									<input type="number" placeholder="Enter TRN" title="No Space OR Letters are allowed" name="TRN" pattern="([\d]{9})" required></br>
+
+                      <label for="uname"><b>First name</b></label>
 											<input type="text" placeholder="Enter Firstname" title="No Space OR Numbers is allowed" name="fname" pattern="[a-zA-Z0-9]+" required></br>
-											
+
 											<label for="uname"><b>Last name</b></label>
 											<input type="text" placeholder="Enter Lastname" title="No Space OR Numbers is allowed" name="lname" pattern="[a-zA-Z0-9]+" required></br>
-											
+
 
 											<label for="psw"><b>Date</b></label>
 											<input type="date" placeholder="Enter date" name="date" required></br>
 											 <?php echo $err; ?>
-							
-											<button type="submit" class="loginbtn">Submit </button>
+
+											<button type="submit" class="loginbtn" name='submitbtn'>Submit </button>
 											<label>
-											 
+
 											</label></br></br></br>
-                         
+
 						                       </div>
                                        </form>
-						       </section> 
+
+                          <?php
+                          var_dump($_POST);
+                          if(isset($_POST['submitbtn'])){
+                            var_dump($_POST);
+                            $TRN=$_POST['TRN'];
+                            $fname=$_POST['fname'];
+                            $lname=$_POST['lname'];
+                            $date=$_POST['date'];
+                            $insertQuery="INSERT INTO avocadoMC_DB.appointment (PatientTRN,FirstName,LastName,Date) VALUES ('$TRN','$fname','$lname','$date')";
+                            var_dump($insertQuery);
+                            mysqli_query($conn,$insertQuery);
+
+                            //close connection
+                            mysqli_close($conn);
+                        unset($_POST['SearchBtn']);
+
+                          }?>
+						       </section>
 			               </div>
 					    </div>
            </main>
 
        </body>
-	 </header>    
+	 </header>
 </html>
-
