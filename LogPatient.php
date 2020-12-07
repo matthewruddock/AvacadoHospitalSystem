@@ -2,6 +2,15 @@
 session_start();
 var_dump($_POST);
 include_once "config.php";
+if(isset($_SESSION['resultFlag']))
+{
+	foreach($_SESSION as $key => $value)	//store SESSION values in to local variables
+	{
+		$$key = $value;
+	}
+}else{
+  $staffId="";
+}
 $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
 
 ?>
@@ -12,7 +21,7 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
 			<style>
 					* {box-sizing: border-box;}
 
-					body { 
+					body {
 					  margin: 0;
 					  font-family: Arial, Helvetica, sans-serif;
 					}
@@ -29,7 +38,7 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
 					  text-align: center;
 					  padding: 12px;
 					  text-decoration: none;
-					  font-size: 12px; 
+					  font-size: 12px;
 					  line-height: 12px;
 					  border-radius: 4px;
 					}
@@ -59,11 +68,11 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
 						display: block;
 						text-align: left;
 					  }
-					  
+
 					  .header-right {
 						float: none;
 					  }
-					  
+
 					}
 					   </style>
 						<style>
@@ -82,7 +91,7 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
              </style>
           <html>
        <head>
-	   
+
           <meta name="viewport" content="width=device-width, initial-scale=1">
       <style>
 						body {font-family: Arial, Helvetica, sans-serif;}
@@ -158,23 +167,23 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
 								  </div>
 								  <div class="header">
 
-		  
+
 								 <div class="header-right">
 								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
-								
-								 
+
+
                                 </div>
 				 </nav>
 				 <div class="bg-img">
-                       
-			<main>	<br/>	   
+
+			<main>	<br/>
                     <div id="page-wrapper">
- 
+
 	                 <section id="region-main" class="col-12">
 
-							   
-	         
-          </head>      
+
+
+          </head>
 		</br></br>
         <body>
         <form  method="POST">
@@ -244,7 +253,7 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
                 }
 
 
-                $updateQuery="UPDATE appointment SET $updateSet WHERE PatientTRN='$TRNSearch'";
+                $updateQuery="UPDATE appointment SET $updateSet, staffId=$staffId WHERE PatientTRN='$TRNSearch'";
                 mysqli_query($conn,$updateQuery);
 
                 //close connection

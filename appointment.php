@@ -29,12 +29,13 @@
 	}
   session_destroy();
   session_start();
-if(isset($_SESSION['staffId'])){
+if(isset($staffId)){
   $_SESSION['type']=$type;
   $_SESSION['staffId'] = $staffId;
   $_SESSION['staffName'] = $staffName;}
   else
-    $_SESSION['type']=$type;
+  var_dump($_SESSION);
+    $_SESSION['type']="Guest";
    ?>
 
 
