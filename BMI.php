@@ -129,14 +129,15 @@ html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
  		<div class="bg-img">
 			<body>
 			</br>
-				<a href="index.php" class="w3-button w3-block">Home</a>
+
+				<a href="newindex.php" class="w3-button w3-block">Home</a>
 					<center><h2> BMI Calculator </h2></center>
 				<div id="bmiform">
 					<b>Please enter your measurements below. </b> <br /><br />
 					<form id="bmicalc" name="bmicalc" method="post">
 						Weight (in kg): <input type="number" name="weight" min="0" max="500" <br /><br />
 						Height (in Meters): <input type="number" name="height" min="0" max="2.5"><br /><br />
-						
+
 						<input type="submit" name="givems" id="givems" class="btn" value="Submit"/>
 						<?php
 //Define variables and give initial values.
@@ -194,11 +195,11 @@ $width=0;
 			print("Body mass index is $bmi");
 }
 ?>
-					</form>		
-				</div>	
+					</form>
+				</div>
 			</body>
 		</div>
-	
+
 <!-- Footer -->
 
 <footer class="w3-container w3-padding-32 w3-light-grey w3-center">
@@ -215,5 +216,3 @@ $width=0;
 
   <p>Powered by <a href="Rover.html" title="W3.CSS" target="_blank" class="w3-hover-text-green">Rover</a></p>
 </footer>
-
-

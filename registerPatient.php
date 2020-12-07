@@ -11,7 +11,7 @@ $PRegTRN=$PRegTitle=$PRegFName=$PRegLName=$PRegDOB=$PRegAddress=$PRegTel=$PRegEm
 			<style>
 					* {box-sizing: border-box;}
 
-					body { 
+					body {
 					  margin: 0;
 					  font-family: Arial, Helvetica, sans-serif;
 					}
@@ -28,7 +28,7 @@ $PRegTRN=$PRegTitle=$PRegFName=$PRegLName=$PRegDOB=$PRegAddress=$PRegTel=$PRegEm
 					  text-align: center;
 					  padding: 12px;
 					  text-decoration: none;
-					  font-size: 12px; 
+					  font-size: 12px;
 					  line-height: 12px;
 					  border-radius: 4px;
 					}
@@ -58,11 +58,11 @@ $PRegTRN=$PRegTitle=$PRegFName=$PRegLName=$PRegDOB=$PRegAddress=$PRegTel=$PRegEm
 						display: block;
 						text-align: left;
 					  }
-					  
+
 					  .header-right {
 						float: none;
 					  }
-					  
+
 					}
 					   </style>
 						<style>
@@ -81,7 +81,7 @@ $PRegTRN=$PRegTitle=$PRegFName=$PRegLName=$PRegDOB=$PRegAddress=$PRegTel=$PRegEm
              </style>
           <html>
        <head>
-	   
+
           <meta name="viewport" content="width=device-width, initial-scale=1">
       <style>
 						body {font-family: Arial, Helvetica, sans-serif;}
@@ -157,25 +157,25 @@ $PRegTRN=$PRegTitle=$PRegFName=$PRegLName=$PRegDOB=$PRegAddress=$PRegTel=$PRegEm
 								  </div>
 								  <div class="header">
 
-		  
+
 								 <div class="header-right">
-								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
-								
-								 
+								<a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+
+
                                 </div>
 				 </nav>
 				 <div class="bg-img">
-                       
-			<main>	<br/>	   
+
+			<main>	<br/>
                     <div id="page-wrapper">
- 
+
 	                 <section id="region-main" class="col-12">
 
 							   <div align = "center">
-	         
-          </head>      
+
+          </head>
 		</br></br>
-		
+
          <center> <form  method="POST">
           <div>
            <center> <table>

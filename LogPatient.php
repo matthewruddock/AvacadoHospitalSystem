@@ -1,6 +1,9 @@
 <?php
 session_start();
-var_dump($_POST);
+if(!isset($_SESSION['type'])||$_SESSION['type']=="Guest"){
+	header("location:index.php");
+}
+
 include_once "config.php";
 if(isset($_SESSION['resultFlag']))
 {
@@ -169,7 +172,7 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
 
 
 								 <div class="header-right">
-								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+								<a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
 
 
                                 </div>
@@ -239,11 +242,13 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
             <table>
             <?php
             if(isset($_POST['SearchBtn'])){
-              var_dump($_POST);
+
 
                 $TRNSearch=$_POST['TRNSearch'];
                 $Status=$_POST['Status'];
                 $updateSet="Status='".$Status."'";
+
+								//if user is a doctor then it will give mre privilege
                 if($_SESSION["type"]=='Doctor'){
                 $Reasonforvisit= $_POST['Reasonforvisit'];
                 $updateSet="ReasonForVisit='".$Reasonforvisit."',Status='".$Status."'";
@@ -259,7 +264,7 @@ $updateSet=$TRNSearch=$Status=$Reasonforvisit="";
                 //close connection
                 mysqli_close($conn);
             unset($_POST['SearchBtn']);
-            var_dump($_POST);
+
             }
             ?>
           </table>

@@ -4,11 +4,11 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <html>
-           
+
 			 <style>
 					* {box-sizing: border-box;}
 
-					body { 
+					body {
 					  margin: 0;
 					  font-family: Arial, Helvetica, sans-serif;
 					}
@@ -25,7 +25,7 @@
 					  text-align: center;
 					  padding: 12px;
 					  text-decoration: none;
-					  font-size: 12px; 
+					  font-size: 12px;
 					  line-height: 12px;
 					  border-radius: 4px;
 					}
@@ -55,7 +55,7 @@
 						display: block;
 						text-align: left;
 					  }
-					  
+
 					  .header-right {
 						float: none;
 					  }
@@ -141,7 +141,7 @@
 							  border: 1px solid #f1f1f1;
 							  margin-bottom: 25px;
 							}
-							 
+
 							/* The Close Button (x) */
 							.close {
 							  position: absolute;
@@ -170,7 +170,7 @@
 							  .cancelbtn, .signupbtn {
 								 width: 100%;
 							  }
-							  
+
 							}
                     </style>
                  <style>
@@ -192,7 +192,7 @@
            <header>
 						<nav>
                           <div class="header"></br>
-                         <img src="logo.png" alt ="logo" style="width:10%"> 
+                         <img src="logo.png" alt ="logo" style="width:10%">
                           </div>
 
                           <div class="header">
@@ -200,23 +200,23 @@
                           </div>
                           <div class="header">
 
-  
+
                          <div class="header-right">
-                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+                        <a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
 						<a href="patientdatadisplay.php"> <img src="avatar2.png" style="width:3%"></i>Registered Patient</a>
-                       
-						 
+
+
 								   </div>
 					    </nav>
-				      
+
 			  </br>
 		  <body>
 
 
-        
+
                     <main>
 	                              <div id="page-wrapper">
-                            
+
 							<center> <p><h4><font color="red">Please fill out this form to log patient information.</font></h4></p></center>
 							<a href="addpatient2.php" class="w3-button w3-block">Add Address Here</a>
 	                    <section id="region-main" class="col-12">
@@ -224,37 +224,37 @@
 									<div align = "center">
 									<div style = "width:410px; border: solid 1px #333333; " align = "left">
 									<div style = "background-color:#333333; color:#FFFFFF; padding:0px;"><b></b></div>
-				                   
+
 									<div style = "margin:0px">
                                        <div class="bg-img">
-									   
-								 <form method="POST" action="validateaddpatient.php" > 
+
+								 <form method="POST" action="validateaddpatient.php" >
 											<div class="container">
-											 
-											 
+
+
 											<bold> Title</bold> <select name="title">
 												  <option value="">Title</option>
 												  <option value="Mr" selected>Mr</option>
 												  <option value="miss">Miss</option>
 												  <option value="mrs">Mrs</option>
 												</select>
-											  		</br></br>				  
+											  		</br></br>
 											  <input type="text" placeholder="Enter First Name" title="No Space OR Numbers is allowed" name="name" pattern="[a-zA-Z0-9]+" required></br>
 											  <input type="text" placeholder="Enter Last Name" title="No Space OR Numbers is allowed" name="lname"  pattern="[a-zA-Z0-9]+" required></br>
-                                              <input type="text" placeholder="Enter TRN " title="TRN Must be 10 Numbers" name="TRN" pattern = "[1-9]{1}[0-9]{9}" required></br></br> 
-											 
+                                              <input type="text" placeholder="Enter TRN " title="TRN Must be 10 Numbers" name="TRN" pattern = "[1-9]{1}[0-9]{9}" required></br></br>
+
 											  <div class="col-md-12">
-						 
+
                                                <div class="P EventCalendarInput{$Hidden}">
-											   
-											  
-											
-											  
+
+
+
+
 											  Gender:
 											 <input type="radio" name="gender" checked <?php if (isset($gender) && $gender=="female") echo "checked";?> value="female">Female
                                              <input type="radio" name="gender" <?php if (isset($gender) && $gender=="male") echo "checked";?> value="male">Male
                                              </br></br>
-											  
+
                                                    DOB
 											  <select name="Year" required>
 												  <option value="">Select year</option>
@@ -274,7 +274,7 @@
 												  <option value="<?php echo ($i < 10) ? '0'.$i : $i; ?>"><?php echo $i; ?></option>
 												  <?php endfor; ?>
 												</select>
-											  
+
 											  </br></br>
 
 											   <div class="clearfix">
@@ -285,7 +285,7 @@
 									                   </div>
 								  </form>
 								                        </div>
-					    </section> 
+					    </section>
 				                                        </div>
 			                                            </div>
                                                         </div>
@@ -293,4 +293,3 @@
       </header>
 </body>
 </html>
-

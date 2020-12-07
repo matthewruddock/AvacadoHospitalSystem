@@ -10,7 +10,7 @@
         <style>
 			* {box-sizing: border-box;}
 
-			body { 
+			body {
 				margin: 0;
 				font-family: Arial, Helvetica, sans-serif;
 			}
@@ -27,7 +27,7 @@
 				text-align: center;
 				padding: 12px;
 				text-decoration: none;
-				font-size: 12px; 
+				font-size: 12px;
 				line-height: 12px;
 				border-radius: 4px;
 			}
@@ -57,7 +57,7 @@
 					display: block;
 					text-align: left;
 				}
-					  
+
 				.header-right {
 					float: none;
 				}
@@ -145,7 +145,7 @@
 				border: 1px solid #f1f1f1;
 				margin-bottom: 25px;
 			}
-							 
+
 			/* The Close Button (x) */
 			.close {
 				position: absolute;
@@ -173,7 +173,7 @@
 				.cancelbtn, .signupbtn {
 					width: 100%;
 				}
-							  
+
 			}
         </style>
         <style>
@@ -193,7 +193,7 @@
         <header>
 			<nav>
             	<div class="header"></br>
-                	<img src="imgs/logo.png" alt ="logo" style="width:10%"> 
+                	<img src="imgs/logo.png" alt ="logo" style="width:10%">
                 </div>
 
                 <div class="header">
@@ -201,11 +201,11 @@
                 </div>
                 <div class="header">
 					<div class="header-right">
-                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+                        <a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
                         <a href="logout.php">Logout</a>
                     </div>
 			</nav>
-		</header>	 
+		</header>
         <body>
             <div class="form">
 
@@ -239,7 +239,7 @@
                                 <td align="center">
                                 <a href="deleteAccount.php?id=<?php echo $row["StaffID"]; ?>">Delete</a>
                                 </td>
-                               
+
                             </tr>
                         <?php  } ?>
                     </tbody>

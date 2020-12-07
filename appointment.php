@@ -34,7 +34,7 @@ if(isset($staffId)){
   $_SESSION['staffId'] = $staffId;
   $_SESSION['staffName'] = $staffName;}
   else
-  var_dump($_SESSION);
+
     $_SESSION['type']="Guest";
    ?>
 
@@ -194,7 +194,7 @@ if(isset($staffId)){
 
 
 								 <div class="header-right">
-								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+								<a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
 
 
                                 </div>
@@ -241,15 +241,15 @@ if(isset($staffId)){
                                        </form>
 
                           <?php
-                          var_dump($_POST);
+
                           if(isset($_POST['submitbtn'])){
-                            var_dump($_POST);
+
                             $TRN=$_POST['TRN'];
                             $fname=$_POST['fname'];
                             $lname=$_POST['lname'];
                             $date=$_POST['date'];
                             $insertQuery="INSERT INTO avocadoMC_DB.appointment (PatientTRN,FirstName,LastName,Date) VALUES ('$TRN','$fname','$lname','$date')";
-                            var_dump($insertQuery);
+
                             mysqli_query($conn,$insertQuery);
 
                             //close connection

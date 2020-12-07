@@ -337,7 +337,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="header">
 					<div class="header-right">
-                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+                        <a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
                         <a href="addAccount.php"> <i class="glyphicon glyphicon-home"></i>ADD ACCOUNT</a>
                         <a href="viewAccount.php"> <i class="glyphicon glyphicon-home"></i>VIEW ACCOUNT</a>
                     </div>

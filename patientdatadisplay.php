@@ -3,11 +3,11 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <html>
-           
+
 			 <style>
 					* {box-sizing: border-box;}
 
-					body { 
+					body {
 					  margin: 0;
 					  font-family: Arial, Helvetica, sans-serif;
 					}
@@ -24,7 +24,7 @@
 					  text-align: center;
 					  padding: 12px;
 					  text-decoration: none;
-					  font-size: 12px; 
+					  font-size: 12px;
 					  line-height: 12px;
 					  border-radius: 4px;
 					}
@@ -54,7 +54,7 @@
 						display: block;
 						text-align: left;
 					  }
-					  
+
 					  .header-right {
 						float: none;
 					  }
@@ -140,7 +140,7 @@
 							  border: 1px solid #f1f1f1;
 							  margin-bottom: 25px;
 							}
-							 
+
 							/* The Close Button (x) */
 							.close {
 							  position: absolute;
@@ -169,7 +169,7 @@
 							  .cancelbtn, .signupbtn {
 								 width: 100%;
 							  }
-							  
+
 							}
                     </style>
                  <style>
@@ -198,7 +198,7 @@ divs {
            <header>
 						<nav>
                           <div class="header"></br>
-                         <img src="logo.png" alt ="logo" style="width:10%"> 
+                         <img src="logo.png" alt ="logo" style="width:10%">
                           </div>
 
                           <div class="header">
@@ -206,12 +206,12 @@ divs {
                           </div>
                           <div class="header">
 
-  
+
                          <div class="header-right">
-                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>LOG OUT</a>
+                        <a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>LOG OUT</a>
 						<a href="addpatient.php"> <img src="avatar2.png" style="width:3%"></i>ADD Patient</a>
-                       
-						 
+
+
 								   </div>
 					    </nav>
 
@@ -220,12 +220,12 @@ divs {
 table, th, td {
   border: 1px solid black;
 }
-</style> 
+</style>
 <table style="width:100%">
   <tr>
     <th>Title</th>
     <th>Firstname</th>
-    <th>Lastname</th> 
+    <th>Lastname</th>
 	<th>Gender</th>
     <th>DOB</th>
 	<th>TRN</th>
@@ -236,7 +236,7 @@ table, th, td {
 	<th>Email</th>
 	<th>Mobilenumber</th>
   </tr>
-  
+
   </table>
 <?php
 

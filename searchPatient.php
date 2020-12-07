@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "config.php";
-$TRNSearch="";
+$LastName="";
 ?>
  <!DOCTYPE html>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -10,7 +10,7 @@ $TRNSearch="";
 			<style>
 					* {box-sizing: border-box;}
 
-					body { 
+					body {
 					  margin: 0;
 					  font-family: Arial, Helvetica, sans-serif;
 					}
@@ -27,7 +27,7 @@ $TRNSearch="";
 					  text-align: center;
 					  padding: 12px;
 					  text-decoration: none;
-					  font-size: 12px; 
+					  font-size: 12px;
 					  line-height: 12px;
 					  border-radius: 4px;
 					}
@@ -57,11 +57,11 @@ $TRNSearch="";
 						display: block;
 						text-align: left;
 					  }
-					  
+
 					  .header-right {
 						float: none;
 					  }
-					  
+
 					}
 					   </style>
 						<style>
@@ -80,9 +80,9 @@ $TRNSearch="";
              </style>
           <html>
        <head>
-	   
+
           <meta name="viewport" content="width=device-width, initial-scale=1">
-      
+
                    <header>
 			    <nav>
 							<div class="header"></br>
@@ -94,11 +94,11 @@ $TRNSearch="";
 								  </div>
 								  <div class="header">
 
-		  
+
 								 <div class="header-right">
-								<a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
-								
-								 
+								<a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+
+
                                 </div>
 				 </nav>
 				 <div class="bg-img">
@@ -106,7 +106,7 @@ $TRNSearch="";
           <form  method="POST">
           <div class="container">
            <center> <h3>Search Patient</h3>
-            PatientTRN: <input type="text" name="TRNSearch" placeholder="Enter TRN">
+            LastName: <input type="text" name="LastName" placeholder="Enter Last Name">
             <input type="submit" name="SearchBtn" value="Search">
           </div>
           <div>
@@ -121,9 +121,10 @@ $TRNSearch="";
                   <th>Email</th>
               </tr></center>
             <?php
-            if(isset($_POST['TRNSearch'])){
-                $TRN=$_POST['TRNSearch'];
-                $SelQuery= "SELECT * FROM patient  WHERE PatientTRN=$TRN";
+            if(isset($_POST['LastName'])){
+
+                $LastName=$_POST['LastName'];
+                $SelQuery= "SELECT * FROM patient  WHERE LastName='$LastName'";
                 $result=mysqli_query($conn,$SelQuery);
 
                 while($rows= mysqli_fetch_assoc($result)){
@@ -140,6 +141,7 @@ $TRNSearch="";
                 }
                 //close connection
                 mysqli_close($conn);
+                unset($_POST['LastName']);
             }
             ?>
           </table></center>

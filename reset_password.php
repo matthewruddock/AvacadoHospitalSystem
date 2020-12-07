@@ -1,32 +1,32 @@
 <?php
 // Initialize the session
 session_start();
- 
+
 // Check if the user is logged in, otherwise redirect to index page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: index.php");
     exit;
 }
- 
+
 // Include config file
 require_once "config.php";
- 
+
 // Define variables and initialize with empty values
 $pwd = $pwd_repeat = "";
 $pwd_err = $pwd_repeat_err = "";
- 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+
     // Validate new password
     if(empty(trim($_POST["pwd"]))){
-        $pwd_err = "Please enter the new password.";     
+        $pwd_err = "Please enter the new password.";
     } elseif(strlen(trim($_POST["pwd"])) < 6){
         $pwd_err = "Password must have atleast 6 characters.";
     } else{
         $pwd = trim($_POST["pwd"]);
     }
-    
+
     // Validate confirm password
     if(empty(trim($_POST["pwd_repeat"]))){
         $pwd_repeat_err = "Please confirm the password.";
@@ -36,20 +36,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $pwd_repeat_err = "Password did not match.";
         }
     }
-        
+
     // Check input errors before updating the database
     if(empty($pwd_err) && empty($pwd_repeat_err)){
         // Prepare an update statement
         $sql = "UPDATE Staff SET Password = ? WHERE StaffID = ?";
-        
+
         if($stmt = mysqli_prepare($conn, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "si", $param_password, $param_staffId);
-            
+
             // Set parameters
             $param_password = password_hash($pwd, PASSWORD_DEFAULT);
             $param_staffId = $_SESSION["staffId"];
-            
+
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Password updated successfully. Destroy the session, and redirect to index page
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_close($stmt);
         }
     }
-    
+
     // Close connection
     mysqli_close($conn);
 }
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <style>
 			* {box-sizing: border-box;}
 
-			body { 
+			body {
 				margin: 0;
 				font-family: Arial, Helvetica, sans-serif;
 			}
@@ -95,7 +95,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				text-align: center;
 				padding: 12px;
 				text-decoration: none;
-				font-size: 12px; 
+				font-size: 12px;
 				line-height: 12px;
 				border-radius: 4px;
 			}
@@ -125,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					display: block;
 					text-align: left;
 				}
-					  
+
 				.header-right {
 					float: none;
 				}
@@ -213,7 +213,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				border: 1px solid #f1f1f1;
 				margin-bottom: 25px;
 			}
-							 
+
 			/* The Close Button (x) */
 			.close {
 				position: absolute;
@@ -241,7 +241,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				.cancelbtn, .signupbtn {
 					width: 100%;
 				}
-							  
+
 			}
         </style>
         <style>
@@ -261,7 +261,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <header>
 			<nav>
             	<div class="header"></br>
-                	<img src="imgs/logo.png" alt ="logo" style="width:10%"> 
+                	<img src="imgs/logo.png" alt ="logo" style="width:10%">
                 </div>
 
                 <div class="header">
@@ -269,10 +269,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
                 <div class="header">
 					<div class="header-right">
-                        <a href="index.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
+                        <a href="newindex.php"> <i class="glyphicon glyphicon-home"></i>HOME</a>
                     </div>
 			</nav>
-		</header>	      
+		</header>
 		</br>
 		<body>
             <main>
@@ -285,11 +285,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 								</div>
 								<div style = "margin:0px">
                                 	<div class="bg-img">
-								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"> 
+								 		<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 											<div class="container">
 												<h1>Reset Password</></h1>
 												<p><font color="yellow">Please fill out this form to reset your password.</font></p>
-	
+
 												<div <?php echo (!empty($pwd_err)) ? 'has-error' : ''; ?>">
                										<label>Password</label>	</br>
 													<input type="password" placeholder="Enter Password" name="pwd" required></br>
@@ -301,25 +301,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 													<input type="password" placeholder="Repeat Password" name="pwd_repeat" required></br>
 													<span class="help-block"><?php echo $pwd_repeat_err; ?></span>
 												</div>
-											  
+
 											   <div class="clearfix">
-                                                     <input type="submit" class="btn btn-primary" value="Submit"> 
+                                                     <input type="submit" class="btn btn-primary" value="Submit">
                                                     <a class="btn btn-link" href="index.php">Cancel</a>
 												</div>
-												
-										    </div>          
+
+										    </div>
 								  		</form>
 									</div>
 								</div>
 							</div>
 						</div>
-					</section> 
-	            </div>                                                                              
+					</section>
+	            </div>
         	</main>
 		</body>
 </html>
 
-<?php 
+<?php
  require "footer.php";
 
 ?>
