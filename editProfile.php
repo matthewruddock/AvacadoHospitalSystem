@@ -24,7 +24,7 @@ foreach($_SESSION as $key => $value)	//store SESSION values in to local variable
 
             <?php
             if($_SESSION['type']!="Guest"){
-                var_dump($_SESSION);
+                
                 $ID=$_SESSION['staffId'];
                 $SelQuery= "SELECT * FROM staff  WHERE StaffID='$ID'";
                 $result=mysqli_query($conn,$SelQuery);
