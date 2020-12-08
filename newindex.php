@@ -189,11 +189,16 @@ if(!isset($_SESSION['type'])){
 			<table id="t01">
   <tr>
     <th><a href="appointment.php">View Appointment</a></th>
-    <th><a href="registerPatient.php">Register Patient</th>
-    <th><a href="logPatient.php">Log Patient</th>
-	<th><a href="searchPatient.php">Search Patient</th>
-	<th><a href="BMI.php">BMI</th>
-	<th><a href="editProfile.php">Edit Profile</th>
+    <th><a href="registerPatient.php">Register Patient</a></th>
+    <th><a href="logPatient.php">Log Patient</a></th>
+	<th><a href="searchPatient.php">Search Patient</a></th>
+	<th><a href="BMI.php">BMI</a></th>
+	<th><a href="editProfile.php">Edit Profile</a></th>
+    <?php if($_SESSION["type"]=="Admin"){
+      echo "<th><a href='manageAccount.php'>Manage Account</a></th>";
+    }?>
+<th><a href='logout.php'>Log out </a></th>
+
   </tr>
   <tr>
 
